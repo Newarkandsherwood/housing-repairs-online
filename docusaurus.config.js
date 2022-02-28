@@ -6,15 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Housing Repairs Online',
+  tagline: 'Repairs Online is a collaborative local authority project, funded by the DLUHC Local Digital Fund',
   url: 'https://city-of-lincoln-council.github.io',
   baseUrl: '/housing-repairs-online/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'City-of-Lincoln-Council', // Usually your GitHub org/user name.
+  projectName: 'housing-repairs-online', // Usually your repo name.
 
   presets: [
     [
@@ -43,9 +43,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Housing Repairs Online',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Housing Repairs Online Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -53,11 +53,11 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: 'https://repairsonlinedigitalfund.com/blog/', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/City-of-Lincoln-Council/housing-repairs-online',
             label: 'GitHub',
             position: 'right',
           },
@@ -70,26 +70,22 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Documentation',
                 to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'About',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Our Approach',
+                href: 'https://repairsonlinedigitalfund.com/about/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
+                label: 'Project background',
+                href: 'https://repairsonlinedigitalfund.com/project-background/',
+              }
             ],
           },
           {
@@ -97,16 +93,16 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                href: 'https://repairsonlinedigitalfund.com/blog/',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/City-of-Lincoln-Council/housing-repairs-online',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
