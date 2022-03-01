@@ -2,46 +2,32 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Housing repairs online
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Let's discover **Housing repairs online in less than 5 minutes**.
 
-## Getting Started
+![Service diagram](/img/housing-repairs-online.drawio.png)
 
-Get started by **creating a new site**.
+## Front End
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- [Built using Next.js](/docs/front-end/frameworks-used)
+- Connects to Repairs API
 
-### What you'll need
+## Repairs API
 
-- [Node.js](https://nodejs.org/en/download/) version 14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- Built using .Net
+- Sends emails and SMS via Gov Notify
+- Saves records into Cosmos DB
+- Saves images into Azure Blob Storage
+- Connects to Housing Management API
+- Connects to Scheduling API
 
-## Generate a new site
+## Housing Management API
 
-Generate a new Docusaurus site using the **classic template**.
+- Built using .Net
+- Connects to Universal Housing
 
-The classic template will automatically be added to your project after you run the command:
+## Scheduling API
 
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- Built using .Net
+- Connects to DRS
