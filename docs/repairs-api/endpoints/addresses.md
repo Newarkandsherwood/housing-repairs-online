@@ -18,6 +18,11 @@ Bearer Token `<token>`
 |----------|-------------- |
 | postcode | M3 0W         |
 
+:::info
+This makes a subsequent request to the Housing management API to retrieve
+eligible addresses
+:::
+
 ### Response:
 
 List of eligible addresses

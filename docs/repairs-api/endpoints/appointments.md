@@ -21,6 +21,11 @@ Bearer Token `<token>`
 | repairIssue    | doorHangingOff |
 | locationId     | 333333         |
 
+:::info
+This makes a subsequent request to the Scheduling API to retrieve
+available appointments
+:::
+
 ### Response:
 
 List of available appointment slots
