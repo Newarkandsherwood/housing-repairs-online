@@ -144,22 +144,22 @@ A `checkAvailability` request can be made to retrieve the possible appointment s
 | Field | Type | Description | Required |
 | ----- | ---- | ----------- | -------- |
 | `onlyBestSlots` | Boolean (‘yes’/’no’) | If only the best slots should be retrieved |      |
-| `periodBegin` |  DateTime |  Earliest time to search for an available slot. | ✔️ |
-| `periodEnd` | DateTime | Latest time to search for an available slot. | ✔️ |
-| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✔️ |
-| `theOrder` | `<Xml node>` |  |  | ✔️ |
-|     `contract` | Alphanumeric | ID of contract to use for the search. <br/> Lincoln’s contract value is zero (0) | ✔️ |
-|     `locationId` | Alphanumeric | ID of the location as stored within DRS | ✔️ |
-|     `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. (* see notes below) | ✔️ |
-|     `priority` | Alphanumeric | A value matching the possible priorities with DRS.(** see notes below) | ✔️ |
+| `periodBegin` |  DateTime |  Earliest time to search for an available slot. | ✅ |
+| `periodEnd` | DateTime | Latest time to search for an available slot. | ✅ |
+| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✅ |
+| `theOrder` | `<Xml node>` |  |  | ✅ |
+|     `contract` | Alphanumeric | ID of contract to use for the search. <br/> Lincoln’s contract value is zero (0) | ✅ |
+|     `locationId` | Alphanumeric | ID of the location as stored within DRS | ✅ |
+|     `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. (* see notes below) | ✅ |
+|     `priority` | Alphanumeric | A value matching the possible priorities with DRS.(** see notes below) | ✅ |
 |     `targetDate` | DateTime | The date by which the job completion is required |
-|     `theBookingCodes` | `<Xml node>` |  |  | ✔️ |
-|         `bookingCodeSORCode` | Alphanumeric | The SOR code to use to check availability | ✔️ |
-|         `itemNumberWithinBooking` | Numerical | Index of job within the order <br/> Must be greater than or equal to 1 | ✔️ |
-|         `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. (* see notes below)| ✔️ |
-|         `quantity` | Numerical | Number of jobs with the order <br/> Must be greater than or equal to 1 | ✔️ |
+|     `theBookingCodes` | `<Xml node>` |  |  | ✅ |
+|         `bookingCodeSORCode` | Alphanumeric | The SOR code to use to check availability | ✅ |
+|         `itemNumberWithinBooking` | Numerical | Index of job within the order <br/> Must be greater than or equal to 1 | ✅ |
+|         `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. (* see notes below)| ✅ |
+|         `quantity` | Numerical | Number of jobs with the order <br/> Must be greater than or equal to 1 | ✅ |
 |         `standardMinuteValue` | Numerical | The duration of the job |
-| `userId` | Alphanumeric and ‘@’ | The user id of the user making the request, typically an email address <br/> This is not validated, so any value can be provided | ✔️ |
+| `userId` | Alphanumeric and ‘@’ | The user id of the user making the request, typically an email address <br/> This is not validated, so any value can be provided | ✅ |
 
 ##### Notes:
 - For our purposes itemNumberWithinBooking and quantity should be set to 1 as we are only querying for a single booking (not multiple)
@@ -204,25 +204,25 @@ A minimal `createOrder` request requires the following fields (in order of appea
 
 | Field | Type | Description | Required |
 | ----- | ---- | ----------- | -------- |
-| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✔️ |
+| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✅ |
 | `theOrder` | `<Xml node>` |  |  |  |
 |      `contactName` | Alphanumeric | Name of contact |  |
-|      `contract` | Alphanumeric | ID of contract to use for the search. | Lincoln’s contract value is zero (0) | ✔️ |
-|      `locationId` | Alphanumeric | ID of the location as stored within DRS | ✔️ |
+|      `contract` | Alphanumeric | ID of contract to use for the search. | Lincoln’s contract value is zero (0) | ✅ |
+|      `locationId` | Alphanumeric | ID of the location as stored within DRS | ✅ |
 |      `message` | Boolean (true/false) | Flag to indicate if an SMS should be sent |
-|      `orderComments` | Alphanumeric | Comments to add to the order. | Required field, but a single space character can be provided (which would be removed/trimmed) | ✔️ |
+|      `orderComments` | Alphanumeric | Comments to add to the order. | Required field, but a single space character can be provided (which would be removed/trimmed) | ✅ |
 |      `orderId` | Numeric | Zero (0) should be used to create an new order Id
-|      `primaryOrderNumber` | Alphanumeric  | The ID of the order within the Housing Management System. | ✔️ |
-|      `priority` | Alphanumeric  | A value matching the possible priorities with DRS | ✔️ |
-|      `targetDate` | DateTime  | The date by which the job completion is required | ✔️ |
-|      `userId` | Alphanumeric and ‘@’ | The user id of the user making the request, typically an  email address <br/> This is not validated, so any value can be provided | ✔️ |
+|      `primaryOrderNumber` | Alphanumeric  | The ID of the order within the Housing Management System. | ✅ |
+|      `priority` | Alphanumeric  | A value matching the possible priorities with DRS | ✅ |
+|      `targetDate` | DateTime  | The date by which the job completion is required | ✅ |
+|      `userId` | Alphanumeric and ‘@’ | The user id of the user making the request, typically an  email address <br/> This is not validated, so any value can be provided | ✅ |
 |      `phone` | Numeric | Contact phone number for the appointment | |
 |       `earliestBookingDate` | DateTime | The earliest date the booking could be made for <br/> If omitted, the date of the request is used. |
 |      `theBookingCodes` | `<Xml node>` |   |   |
-|         `bookingCodeSORCode` | Alphanumeric | The Schedule of Rates (SoR) code for the booking | ✔️ |
-|         `itemNumberWithinBooking` | Numerical | Index of job within the order <br/> Must be greater than or equal to 1 | ✔️ |
-|         `quantity` | Numerical | Number of jobs with the order <br/> Must be greater than or equal to 1 | ✔️ |
-|         `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. | ✔️ |
+|         `bookingCodeSORCode` | Alphanumeric | The Schedule of Rates (SoR) code for the booking | ✅ |
+|         `itemNumberWithinBooking` | Numerical | Index of job within the order <br/> Must be greater than or equal to 1 | ✅ |
+|         `quantity` | Numerical | Number of jobs with the order <br/> Must be greater than or equal to 1 | ✅ |
+|         `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. | ✅ |
 
 The `earliestBookingDate` field is optional and omitting it would use the date and time of the request. It would be best to set it to the start date and time of the chosen appointment slot, i.e. `beginDate` of `checkAvailability` response.
 
@@ -248,7 +248,7 @@ A minimal scheduleBooking request requires the following fields (in order of app
 | ----- | ---- | ----------- | -------- |
 | `id` | Numeric | An identifier for the request. Default value is zero (‘0’) |   |
 | `force` | Boolean (‘false’/’true’) | Indicates if the booking should be forcibly scheduled |   |
-| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✔️ |
+| `sessionId` | Alphanumeric | Session Id for authorisation (see above) | ✅ |
 | `theBooking` | `<Xml node>` |   |   |
 |      `bookingId` | Numeric | The Id of the booking being scheduled |
 |      `bookingReason` | Alphanumeric | The booking reason/type <br/> e.g. ‘FIRST’ indicates initial booking and ‘FOLLOW ON’ for a follow on booking <br/> Omitting uses a value of ‘first’, which appears to be distinct from ‘FIRST’ <br/> `<Add comment> `|   |   |
@@ -260,7 +260,7 @@ A minimal scheduleBooking request requires the following fields (in order of app
 |      `orderId` | Alphanumeric | ID of the order |   |
 |      `planningWindowStart` | DateTime | Earliest time to schedule the booking for. |   |
 |      `planningWindowEnd` | DateTime | Latest time to schedule the booking for. |   |
-|      `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. <br/>  <br/> Doesn’t need to match the DRS order which the booking is against.  <br/> Can be anything - including a blank space! | ✔️ |
+|      `primaryOrderNumber` | Alphanumeric | A unique ID of an order number <br/> Typically this is the Id of the order within the Housing Management System. <br/>  <br/> Doesn’t need to match the DRS order which the booking is against.  <br/> Can be anything - including a blank space! | ✅ |
 |      `theBookingCodes` | `<Xml node>` |   |   |
 |         `bookingCodeSORCode` | Alphanumeric | The SOR code to use to check availability |   |
 |         `bookingId`  | Numeric | The Id of the booking being scheduled |   |
