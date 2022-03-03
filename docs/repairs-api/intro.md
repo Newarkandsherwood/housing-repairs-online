@@ -1,14 +1,18 @@
 # Repairs API
 
+<a class="badge badge--secondary" href="https://github.com/City-of-Lincoln-Council/housing-repairs-online-api">GitHub Repository</a>
+
+## Frameworks used
+
 Written in .Net
 
-## Environment variables
+### Environment variables
 | Name | Value Description |
 |---------------------------| --------------------------------|
 | AUTHENTICATION_IDENTIFIER |   |
 | JWT_SECRET |  |
 | ADDRESSES_API_URL | Address API URL |
-| SCHEDULING_API_URL | Scheduling API URL |
+| [SCHEDULING_API_URL](/docs/scheduling-api/intro) | Scheduling API URL |
 | COSMOS_ENDPOINT_URL | Cosmos endpoint URL |
 | COSMOS_AUTHORIZATION_KEY | Cosmos authorization key |
 | COSMOS_DATABASE_ID | Cosmos database name, e.g.: `housing-repairs-online` |

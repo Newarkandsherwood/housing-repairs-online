@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 # Front end
+
+<a class="badge badge--secondary" href="https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend">GitHub Repository</a>
+
 ## Frameworks used
 
 The frontend of the Housing Repairs Online app is built using Next.js and
