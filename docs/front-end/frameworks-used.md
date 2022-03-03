@@ -22,7 +22,7 @@ Each next.js API endpoint is deployed as an Azure function.
 The following environment variables need to be set in the Azure portal to enable
 the frontend app to make calls to be Repairs API
 
-- `REPAIRS_API_BASE_URL`
+- [`REPAIRS_API_BASE_URL`](/docs/repairs-api/intro)
 - `REPAIRS_API_IDENTIFIER`
 - `SENTRY_DSN`
 

@@ -14,9 +14,9 @@ Bearer Token `<token>`
 
 #### Query Params
 
-| Key      | Example value |
-|----------|-------------- |
-| postcode | M3 0W         |
+| Key      | Example value | Required |
+|----------|-------------- | -------- |
+| postcode | M3 0W         | ✅       |
 
 :::info
 This makes a subsequent request to the Housing management API to retrieve

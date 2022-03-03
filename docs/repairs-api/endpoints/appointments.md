@@ -14,12 +14,12 @@ Bearer Token `<token>`
 
 #### Query Params
 
-| Key            | Example value  |
-|----------------|----------------|
-| repairLocation | kitchen        |
-| repairProblem  | cupboards      |
-| repairIssue    | doorHangingOff |
-| locationId     | 333333         |
+| Key            | Example value  | Required |
+|----------------|----------------| -------- |
+| repairLocation | kitchen        | ✅       |
+| repairProblem  | cupboards      | ✅       |
+| repairIssue    | doorHangingOff | ✅       |
+| locationId     | 333333         | ✅       |
 
 :::info
 This makes a subsequent request to the Scheduling API to retrieve
