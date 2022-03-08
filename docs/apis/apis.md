@@ -11,3 +11,6 @@ There are 3 APIs involved in Housing Repairs Online:
 
 ## Authentication
 Each API requires authentication, which is described in detail [here](./authentication).
+
+## Health Checks
+Each API exposes a health check endpoint, which are described in detail [here](./health-checks).
