@@ -145,7 +145,7 @@ Email notification template ID is configured via [environment variables](#i-emai
 |---------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | AUTHENTICATION_IDENTIFIER                                                 | A unique identifier used to validate access.*                                         |
 | JWT_SECRET                                                                | A hash secret used for encryption.*                                                   |
-| [ADDRESSES_API_URL](/docs/housing-management-system-api)                  | Address API URL                                                                       |
+| [ADDRESSES_API_URL](/docs/housing-management-system-api/intro)            | Address API URL                                                                       |
 | [SCHEDULING_API_URL](/docs/scheduling-api/intro)                          | Scheduling API URL                                                                    |
 | <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                   |
 | COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                              |
