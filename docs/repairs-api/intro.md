@@ -141,24 +141,24 @@ Email notification template ID is configured via [environment variables](#i-emai
 
 
 ## Environment variables
-| Name                                                                |  Description                                                                          |
-|---------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| AUTHENTICATION_IDENTIFIER                                           | A unique identifier used to validate access.*                                         |
-| JWT_SECRET                                                          | A hash secret used for encryption.*                                                   |
-| [ADDRESSES_API_URL](/docs/housing-management-system-api)            | Address API URL                                                                       |
-| [SCHEDULING_API_URL](/docs/scheduling-api/intro)                    | Scheduling API URL                                                                    |
-| <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                    | Cosmos endpoint URL                                                                   |
-| COSMOS_AUTHORIZATION_KEY                                            | Cosmos authorization key                                                              |
-| COSMOS_DATABASE_ID                                                  | Cosmos database name, e.g.: `housing-repairs-online`                                  |
-| COSMOS_CONTAINER_ID                                                 | Cosmos table name, e.g.: `repairs-requests`                                           |
-| <span id="blob-env">AZURE_STORAGE_CONNECTION_STRING</span>          | Blob storage connection string                                                        |
-| STORAGE_CONTAINER_NAME                                              | Blob storage container name, e.g.: `housing-repairs-online`                           |
-| GOV_NOTIFY_KEY                                                      | Gov notification key                                                                  |
-| <span id="n-sms-env">CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID</span>     | Id of the SMS template that will be sent to customers                                 |
-| <span id="n-email-env">CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID</span> | Id of the email template that will be sent to customers                               |
-| <span id="i-email-env">INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID</span>     | Id of the template that will be sent to staff                                         |
-| <span id="email-env">INTERNAL_EMAIL</span>                          | Email to which internal staff emails will be sent to                                  |
-| DAYS_UNTIL_IMAGE_EXPIRY                                             | Number of days attached images can be accessible for                                  |
-| SENTRY_DNS                                                          | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
+| Name                                                                      |  Description                                                                          |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| AUTHENTICATION_IDENTIFIER                                                 | A unique identifier used to validate access.*                                         |
+| JWT_SECRET                                                                | A hash secret used for encryption.*                                                   |
+| [ADDRESSES_API_URL](/docs/housing-management-system-api)                  | Address API URL                                                                       |
+| [SCHEDULING_API_URL](/docs/scheduling-api/intro)                          | Scheduling API URL                                                                    |
+| <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                   |
+| COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                              |
+| COSMOS_DATABASE_ID                                                        | Cosmos database name, e.g.: `housing-repairs-online`                                  |
+| COSMOS_CONTAINER_ID                                                       | Cosmos table name, e.g.: `repairs-requests`                                           |
+| <span id="blob-env">AZURE_STORAGE_CONNECTION_STRING</span>                | Blob storage connection string                                                        |
+| STORAGE_CONTAINER_NAME                                                    | Blob storage container name, e.g.: `housing-repairs-online`                           |
+| GOV_NOTIFY_KEY                                                            | Gov notification key                                                                  |
+| <span id="n-sms-env">CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID</span>           | Id of the SMS template that will be sent to customers                                 |
+| <span id="n-email-env">CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID</span>       | Id of the email template that will be sent to customers                               |
+| <span id="i-email-env">INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID</span>           | Id of the template that will be sent to staff                                         |
+| <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                  |
+| DAYS_UNTIL_IMAGE_EXPIRY                                                   | Number of days attached images can be accessible for                                  |
+| [SENTRY_DSN](/docs/alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
 
 \* See [Authentication](/docs/apis/authentication) for more details.

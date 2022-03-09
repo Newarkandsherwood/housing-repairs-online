@@ -1,0 +1,8 @@
+{
+  "label": "Alerting & Monitoring",
+  "position": 6,
+  "link": {
+    "type": "doc",
+    "id": "intro"
+  }
+}
