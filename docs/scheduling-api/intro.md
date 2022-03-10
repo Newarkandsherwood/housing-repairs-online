@@ -17,3 +17,15 @@ Written in .Net
 | [SENTRY_DSN](/docs/alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)   |
 
 \* See [Authentication](/docs/apis/authentication) for more details.
+
+## Health Checks
+
+See [Health Checks](/docs/apis/health-checks) for details.
+
+The API is determined to be health if:
+
+- It can _see/reach_ the configured DRS host
+
+DRS doesn't have a health check endpoint and so a ping check was determined to be the best option.
+
+Due to Azure disabling regular ping operations, TCP ping has been used instead.

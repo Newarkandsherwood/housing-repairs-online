@@ -162,3 +162,13 @@ Email notification template ID is configured via [environment variables](#i-emai
 | [SENTRY_DSN](/docs/alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
 
 \* See [Authentication](/docs/apis/authentication) for more details.
+
+## Health Checks
+
+See [Health Checks](/docs/apis/health-checks) for details.
+
+The API is determined to be health if:
+
+- Each Housing Repairs API it depends upon is healthy
+- It can connect to the configured Azure Cosmos DB
+- It can connect to the configured Azure Blob storage
