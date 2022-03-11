@@ -58,7 +58,7 @@ If data is stored on premise, a VPN or other datalink should be setup so that cl
 
 ### Alerting & Monitoring
 
-See [Alerting & Monitoring](/docs/alerting-and-monitoring/intro) for details.
+See [Alerting & Monitoring](./alerting-and-monitoring/intro) for details.
 
 ## Configuration
 

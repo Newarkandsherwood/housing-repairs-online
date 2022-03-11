@@ -11,7 +11,7 @@ Let's discover **Housing repairs online in less than 5 minutes**.
 
 ## Front End
 
-- [Built using Next.js](/docs/front-end/frameworks-used)
+- [Built using Next.js](./front-end/frameworks-used)
 - Connects to Repairs API
 
 ## Repairs API

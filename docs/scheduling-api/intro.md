@@ -14,13 +14,13 @@ Written in .Net
 | DrsOptions__ApiAddress                                                  | DRS API Address                                                                          |
 | DrsOptions__Login                                                       | DRS login user name                                                                      |
 | DrsOptions__Password                                                    | DRS login password                                                                       |
-| [SENTRY_DSN](/docs/alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)   |
+| [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)   |
 
-\* See [Authentication](/docs/apis/authentication) for more details.
+\* See [Authentication](../apis/authentication) for more details.
 
 ## Health Checks
 
-See [Health Checks](/docs/apis/health-checks) for details.
+See [Health Checks](../apis/health-checks) for details.
 
 The API is determined to be health if:
 

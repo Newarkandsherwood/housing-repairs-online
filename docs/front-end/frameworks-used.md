@@ -25,9 +25,9 @@ Each next.js API endpoint is deployed as an Azure function.
 The following environment variables need to be set in the Azure portal to enable
 the frontend app to make calls to be Repairs API
 
-- [`REPAIRS_API_BASE_URL`](/docs/repairs-api/intro)
+- [`REPAIRS_API_BASE_URL`](../repairs-api/intro)
 - `REPAIRS_API_IDENTIFIER`
-- [`SENTRY_DSN`](/docs/alerting-and-monitoring/intro)
+- [`SENTRY_DSN`](../alerting-and-monitoring/intro#azure-component-setup)
 
 Any environment variable that needs to be used on the client side should be set
 at deployment time in the [`Build And Deploy` job](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml#L100).

@@ -5,9 +5,9 @@ sidebar_position: 1
 
 There are 3 APIs involved in Housing Repairs Online:
 
-- [Repairs API](/docs/repairs-api/intro)
-- [Housing Management System API](/docs/housing-management-system-api/intro)
-- [Scheduling API](/docs/scheduling-api/intro)
+- [Repairs API](../repairs-api/intro)
+- [Housing Management System API](../housing-management-system-api/intro)
+- [Scheduling API](../scheduling-api/intro)
 
 ## Authentication
 Each API requires authentication, which is described in detail [here](./authentication).
