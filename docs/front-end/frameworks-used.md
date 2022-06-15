@@ -32,6 +32,12 @@ the frontend app to make calls to be Repairs API
 Any environment variable that needs to be used on the client side should be set
 at deployment time in the [`Build And Deploy` job](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml#L100).
 
+The following variables are required by the front end and should be setup as GitHub secrets for the repository:
+
+- `SENTRY_DSN`, the Sentry project Data Source Name (DSN)
+- `SENTRY_ORG`, the organisation specified in Sentry
+- `SENTRY_AUTH_TOKEN`, authentication token used for all communication with Sentry
+
 ## Monitoring and alerting
 
 Sentry is used for monitoring and alerting.
