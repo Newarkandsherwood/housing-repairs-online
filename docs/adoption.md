@@ -66,5 +66,15 @@ Each component's configuration is outlined in their own specific documentation.
 
 Please refer to this documentation to configure each component.
 
+### Documentation
+
+This documentation uses [Docusaurus](https://docusaurus.io/) and is generated via Github actions.
+
+After the [housing-repairs-online](https://github.com/City-of-Lincoln-Council/housing-repairs-online) repository has been cloned/forked, follow these steps to ensure GitHub regenerates documentation when changes are made:
+
+- Set the branch to use for GitHub pages to `gh-pages` ([see here](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site))
+- Configure the repository by adding a Deploy Key and `ACTIONS_DEPLOY_KEY` Secret ([see here](https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-create-ssh-deploy-key))
+
+
 [^1]:
      When creating resource in Azure, if using Github integration, some of these secrets will be automatically added to the repository.
