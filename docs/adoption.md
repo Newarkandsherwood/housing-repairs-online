@@ -62,7 +62,7 @@ An Azure service principal is an identity created that can be used for automated
 
 ### Create a Terraform backend
 
-Complete the following steps in the azure web portal:
+Complete the following steps in the Azure web portal:
 
 1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
 2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. From the storage account page, navigate to `Access keys` and copy the first key. Add it to github actions secrets under the name `STORAGE_ACCOUNT_KEY`
@@ -70,133 +70,28 @@ Complete the following steps in the azure web portal:
 
 ### Adding GitHub actions job and secrets
 
-Once you have added a remote backend to your Terraform and created a service principal, GitHub actions should be configured to deploy resources to azure using Terraform. We will be using the [setup-terraform](https://github.com/hashicorp/setup-terraform) action to run Terraform in github actions
+Once you have added a remote backend to your Terraform and created a service principal, GitHub actions should be configured to deploy resources to Azure using Terraform. We will be using the [setup-terraform](https://github.com/hashicorp/setup-terraform) action to run Terraform in github actions
 
-1. Add the following secrets as your github repository secrets (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
+1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-   `AZURE_AD_CLIENT_SECRET = value is in your clipboard from Step 2.4`
-   `AZURE_AD_CLIENT_ID = This is the Application (client) ID`
-   `AZURE_AD_TENANT_ID = This is the Directory (tenant) ID`
-   `AZURE_SUBSCRIPTION_ID = Navigate to subscriptions and select the Subscription ID for your subscription `
+| Secret name              | Value|
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
+| `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
+| `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
+| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                ||
+| `STATIC_SITE_NAME`  | The name of your static site
 
-2. You will then reference this as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
+2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
 3. Add STORAGE_ACCOUNT_KEY as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
 
-4. Below is an example of how your workflow should look:
-
-```
-name: "Terraform"
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-jobs:
-  terraform:
-    name: "Terraform"
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-    runs-on: ubuntu-latest
-    environment: production
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: './terraform'
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_wrapper: false
-
-      - name: Terraform fmt
-        run: terraform fmt -check
-        continue-on-error: true
-
-      - name: Terraform Init
-        run: terraform init -backend-config="storage_account_name=your_storage_account_name" -backend-config="resource_group_name=your_resource_group_name" -backend-config="container_name=tfstate" -backend-config="key=${{secrets.STORAGE_ACCOUNT_KEY}}"
-
-      - name: Terraform Validate
-        run: terraform validate -no-color
-
-      - name: Terraform Plan
-        run: terraform plan -var="storage_account_name=your_storage_account_name" -var="resource_group_name=your_resource_group_name" -var="container_name=tfstate" -var="key=${{secrets.STORAGE_ACCOUNT_KEY}}" -var="resource_group_location=your_resource_group_location"
-        continue-on-error: true
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -var="storage_account_name=your_storage_account_name" -var="resource_group_name=your_resource_group_name" -var="container_name=tfstate" -var="key=${{secrets.STORAGE_ACCOUNT_KEY}}" -var="resource_group_location=your_resource_group_location"
-
-
-```
-
-_Note: the Terraform commands with their respective flags should be in a single line_
+4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
 
 ### Deploy housing-repairs-online-frontend
 
-Once you have completed the above steps, add the following Terraform code to main.tf to provision a static web app as this is where the frontend is deployed.
 
-```
-resource "azurerm_static_site" "hro_frontend_test" {
-  name                = "name-of-your-static-site"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-}
-
-```
-
-Add the following code in your yaml file to deploy your code to the static web app:
-
-```
-  build_and_deploy_job:
-    needs: [terraform]
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Build and Deploy Job
-    defaults:
-      run:
-        shell: bash
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - name: Build And Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{secrets.AZURE_STATIC_WEB_APPS_API_TOKEN}}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-          action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "api" # Api source code path - optional
-          app_artifact_location: 'public' # Built app content directory - optional
-          output_location: "out" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
-          NEXT_PUBLIC_APP_ENV: ${{ (github.event_name == 'pull_request' && 'staging') || ('production') }}
-
-
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{secrets.AZURE_STATIC_WEB_APPS_API_TOKEN}}
-          action: 'close'
-```
-
-Now you have added all the resources that you need in azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the azure static web app resource (however the deployment will fail and this is expected). Log in to the azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
+Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
