@@ -62,57 +62,11 @@ An Azure service principal is an identity created that can be used for automated
 
 ### Create a Terraform backend
 
-1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed
-2. Create a storage account, and attach it to the resource group you created above
-3. In that storage account, create a container called tfstate. This is where your state file will live
-4. Create a Terraform directory followed by a main.tf file. Add the following Terraform (Note, the Terraform version may vary):
+Complete the following steps in the azure web portal:
 
-```
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.46.0"
-    }
-  }
-  backend "azurerm" {}
-}
-provider "azurerm" {
-  features {}
-}
-
-data "terraform_remote_state" "state" {
-  backend = "azurerm"
-  config = {
-    resource_group_name  = var.resource_group_name
-    storage_account_name = var.storage_account_name
-    container_name       = var.container_name
-    key                  = var.key
-  }
-}
-```
-
-4. Create a variables.tf file and add the following code:
-
-```
-variable "storage_account_name" {
-  type = string
-}
-variable "container_name" {
-  type = string
-}
-variable "resource_group_name" {
-  type = string
-}
-variable "resource_group_location" {
-  type = string
-}
-variable "key" {
-  type = string
-}
-```
-
-_Note: You should know the value of all these variables, apart from key which will be explained further along the tutorial._
+1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
+2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. From the storage account page, navigate to `Access keys` and copy the first key. Add it to github actions secrets under the name `STORAGE_ACCOUNT_KEY`
+3. In that storage account, create a container called tfstate. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value tfstate
 
 ### Adding GitHub actions job and secrets
 
