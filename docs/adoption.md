@@ -65,8 +65,8 @@ An Azure service principal is an identity created that can be used for automated
 Terraform is an infrastructure as code tool which we will be using to provision the Azure resources to deploy our application. Terraform needs to be able to store its state so it is aware of what resources it has created/destroyed/updated etc. This state will be stored remotely in an Azure storage container. Complete the following steps in the Azure web portal to create the storage container:
 
 1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
-2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. From the storage account page, navigate to `Access keys` and copy the first key. Add it to github actions secrets under the name `STORAGE_ACCOUNT_KEY`
-3. In that storage account, create a container called tfstate. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value tfstate
+2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. Add `STORAGE_ACCOUNT_KEY` with value `prod.terraform.tfstate` to github secrets, this will be name name of the file where the state is sotred
+3. In that storage account, create a container called tfstate. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value `tfstate-{YOUR-SERVICE_NAME}`
 
 ### Adding GitHub actions job and secrets
 
@@ -74,13 +74,13 @@ Once you have added a remote backend to your Terraform and created a service pri
 
 1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-| Secret name              | Value|
-| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Secret name              | Value                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- | --- |
 | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
 | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
 | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
-| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                ||
-| `STATIC_SITE_NAME`  | The name of your static site
+| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |     |
+| `STATIC_SITE_NAME`       | The name of your static site                                                                                  |
 
 2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
@@ -89,7 +89,6 @@ Once you have added a remote backend to your Terraform and created a service pri
 4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
 
 ### Deploy housing-repairs-online-frontend
-
 
 Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
