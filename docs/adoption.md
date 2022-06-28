@@ -60,9 +60,9 @@ An Azure service principal is an identity created that can be used for automated
 3. Assign a role to the service principal as per [this documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application). If you are not able to do this, contact your subscription administrator as you do not have the permission to do so
 4. Create a client secret for your service principal. [See documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-2-create-a-new-application-secret). Make sure to keep a note of the secret or copy it to your clipboard
 
-### Create a Terraform backend
+### Terraform state storage
 
-Complete the following steps in the Azure web portal:
+Terraform is an infrastructure as code tool which we will be using to provision the Azure resources to deploy our application. Terraform needs to be able to store its state so it is aware of what resources it has created/destroyed/updated etc. This state will be stored remotely in an Azure storage container. Complete the following steps in the Azure web portal to create the storage container:
 
 1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
 2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. From the storage account page, navigate to `Access keys` and copy the first key. Add it to github actions secrets under the name `STORAGE_ACCOUNT_KEY`
