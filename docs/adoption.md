@@ -60,12 +60,12 @@ An Azure service principal is an identity created that can be used for automated
 3. Assign a role to the service principal as per [this documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application). If you are not able to do this, contact your subscription administrator as you do not have the permission to do so
 4. Create a client secret for your service principal. [See documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-2-create-a-new-application-secret). Make sure to keep a note of the secret or copy it to your clipboard
 
-### Create a terraform backend
+### Create a Terraform backend
 
 1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed
 2. Create a storage account, and attach it to the resource group you created above
 3. In that storage account, create a container called tfstate. This is where your state file will live
-4. Create a terraform directory followed by a main.tf file. Add the following terraform (Note, the terraform version may vary):
+4. Create a Terraform directory followed by a main.tf file. Add the following Terraform (Note, the Terraform version may vary):
 
 ```
 terraform {
@@ -116,7 +116,7 @@ _Note: You should know the value of all these variables, apart from key which wi
 
 ### Adding GitHub actions job and secrets
 
-Once you have added a remote backend to your terraform and created a service principal, GitHub actions should be configured to deploy resources to azure using terraform. We will be using the [setup-terraform](https://github.com/hashicorp/setup-terraform) action to run terraform in github actions
+Once you have added a remote backend to your Terraform and created a service principal, GitHub actions should be configured to deploy resources to azure using Terraform. We will be using the [setup-terraform](https://github.com/hashicorp/setup-terraform) action to run Terraform in github actions
 
 1. Add the following secrets as your github repository secrets (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
@@ -127,7 +127,7 @@ Once you have added a remote backend to your terraform and created a service pri
 
 2. You will then reference this as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
-3. Add STORAGE_ACCOUNT_KEY as a repository secret. This is the storage account key for your terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
+3. Add STORAGE_ACCOUNT_KEY as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
 
 4. Below is an example of how your workflow should look:
 
@@ -182,11 +182,11 @@ jobs:
 
 ```
 
-_Note: the terraform commands with their respective flags should be in a single line_
+_Note: the Terraform commands with their respective flags should be in a single line_
 
 ### Deploy housing-repairs-online-frontend
 
-Once you have completed the above steps, add the following terraform code to main.tf to provision a static web app as this is where the frontend is deployed.
+Once you have completed the above steps, add the following Terraform code to main.tf to provision a static web app as this is where the frontend is deployed.
 
 ```
 resource "azurerm_static_site" "hro_frontend_test" {
@@ -242,7 +242,7 @@ Add the following code in your yaml file to deploy your code to the static web a
           action: 'close'
 ```
 
-Now you have added all the resources that you need in azure in terraform, you are ready for the CI to apply the terraform and deploy. The first CI run will provision the azure static web app resource (however the deployment will fail and this is expected). Log in to the azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
+Now you have added all the resources that you need in azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the azure static web app resource (however the deployment will fail and this is expected). Log in to the azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
