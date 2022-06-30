@@ -64,9 +64,9 @@ An Azure service principal is an identity created that can be used for automated
 
 Terraform is an infrastructure as code tool which we will be using to provision the Azure resources to deploy our application. Terraform needs to be able to store its state so it is aware of what resources it has created/destroyed/updated etc. This state will be stored remotely in an Azure storage container. Complete the following steps in the Azure web portal to create the storage container:
 
-1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
-2. Create a storage account, and attach it to the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`. Add `STORAGE_ACCOUNT_KEY` with value `prod.terraform.tfstate` to github secrets, this will be name name of the file where the state is sotred
-3. In that storage account, create a container called tfstate. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value `tfstate-{YOUR-SERVICE_NAME}`
+1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. This resource group will be used for all other resources you provision so you should make it generic, e.g. `housing-repairs-online`. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
+2. Create a storage account use the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`.
+3. In that storage account, create a container called `tfstate-{YOUR-SERVICE_NAME}`. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value `tfstate-{YOUR-SERVICE_NAME}`
 
 ### Adding GitHub actions job and secrets
 
@@ -75,7 +75,7 @@ Once you have added a remote backend to your Terraform and created a service pri
 1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
 | Secret name              | Value                                                                                                         |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------- | --- |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------
 | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
 | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
 | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
