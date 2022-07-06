@@ -66,7 +66,8 @@ Terraform is an infrastructure as code tool which we will be using to provision 
 
 1. Create a resource group for your infrastructure or use an existing one where your resources can be deployed. This resource group will be used for all other resources you provision so you should make it generic, e.g. `housing-repairs-online`. Add the resource group name and location as `RESOURCE_GROUP_NAME` and `RESOURCE_GROUP_LOCATION` respectively to github actions secrets.
 2. Create a storage account use the resource group you created above. Add the name of the storage account you created to github secrets as `STORAGE_ACCOUNT_NAME`.
-3. In that storage account, create a container called `tfstate-{YOUR-SERVICE_NAME}`. This is where your state file will live. Create a github action secret called `CONTAINER_NAME` with the value `tfstate-{YOUR-SERVICE_NAME}`
+3. In that storage account, create a container called `tfstate`. This is where your state files will live. Create a github action secret called `CONTAINER_NAME` with the value `tfstate`
+4. Create github actions secret called `STATE_KEY_NAME` with the value `{SERVICE_NAME}.tfstate`
 
 ### Adding GitHub actions job and secrets
 
@@ -84,7 +85,7 @@ Once you have added a remote backend to your Terraform and created a service pri
 
 2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
-3. Add STORAGE_ACCOUNT_KEY as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
+3. Add STATE_KEY_NAME as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
 
 4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
 
