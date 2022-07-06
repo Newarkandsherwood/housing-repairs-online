@@ -75,11 +75,11 @@ Once you have added a remote backend to your Terraform and created a service pri
 1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
 | Secret name              | Value                                                                                                         |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
 | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
 | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
-| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |     |
+| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |
 | `STATIC_SITE_NAME`       | The name of your static site                                                                                  |
 
 2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
@@ -91,6 +91,12 @@ Once you have added a remote backend to your Terraform and created a service pri
 ### Deploy housing-repairs-online-frontend
 
 Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
+
+_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
+
+### Deploy housing-repairs-online-api
+
+the second run.
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
