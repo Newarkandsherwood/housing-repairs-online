@@ -97,9 +97,34 @@ _There will be some future work to prevent the manual entry of the AZURE STATIC 
 
 ### Deploy housing-repairs-online-api
 
-the second run.
+To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
-_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
+| Secret name                             | Description                                                                  |
+| --------------------------------------- | ---------------------------------------------------------------------------- |
+| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve this App Service once HousingManagementSystemApi is deployed        |
+| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service slot HousingManagementSystemApi is deployed        |
+| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed            |
+| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service slot HousingRepairsSchedulingApi is deployed       |
+| `AUTHENTICATION_IDENTIFIER`             | TBC                                                                          |
+| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created |
+| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created   |
+| `DAYS_UNTIL_IMAGE_EXPIRY`               | E.g. `14` days before image uploaded by customer expires                     |
+| `GOV_NOTIFY_KEY_PRODUCTION`             | Staging gov notify key                                                       |
+| `GOV_NOTIFY_KEY_STAGING`                | Production gov notify key                                                    |
+| `INTERNAL_EMAIL`                        | TBC                                                                          |
+| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | TBC                                                                          |
+| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for production                                      |
+| `JWT_SECRET_STAGING`                    | JWT secret generated for for staging                                         |
+| `NUGET_AUTH_GITHUB_TOKEN`               | TBC                                                                          |
+| `NUGET_AUTH_GITHUB_USERNAME`            | TBC                                                                          |
+| `SENTRY_DSN`                            | TBC                                                                          |
+| `SERVICE_NAME`                          | `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`                          |
+| `SOR_CONFIG`                            | SOR codes in JSON format                                                     |
+| `STATE_KEY_NAME`                        | The name of your static site                                                 |
+| `STORAGE_CONTAINER_NAME_PRODUCTION`     | `housing-repairs-online`                                                     |
+| `STORAGE_CONTAINER_NAME_STAGING`        | `housing-repairs-online-staging`                                             |
+
+Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step however the `Provision Infrastructure` step should pass and deploy all the infrastructure. Once this is done, navigate to the App Services, in the Azure web portal, navigate to the housing repairs online api app service and copy the URL Add this to github actions secret as `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION`. Then under the`Deployment` section, select `Deployment slots`, select the staging app and copy the URL for staging, add this to github actions as `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING`. Once this is complete, you can rerun the workflow and all the steps should pass.
 
 ## Integration
 
