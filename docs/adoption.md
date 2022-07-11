@@ -99,30 +99,30 @@ _There will be some future work to prevent the manual entry of the AZURE STATIC 
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
-| Secret name                             | Description                                                                                   |
-| --------------------------------------- |-----------------------------------------------------------------------------------------------|
-| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve this App Service once HousingManagementSystemApi is deployed                         |
-| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service *Staging* slot HousingManagementSystemApi is deployed               |
-| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed                             |
-| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service *Staging* slot HousingRepairsSchedulingApi is deployed              |
-| `AUTHENTICATION_IDENTIFIER`             | A unique identifier used to validate access used to validate access                           |
-| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                  |
-| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                    |
-| `DAYS_UNTIL_IMAGE_EXPIRY`               | E.g. `14` days before image uploaded by customer expires                                      |
-| `GOV_NOTIFY_KEY_PRODUCTION`             | Staging gov notify key                                                                        |
-| `GOV_NOTIFY_KEY_STAGING`                | Production gov notify key                                                                     |
-| `INTERNAL_EMAIL`                        | Internal email address for receiving repair request details, for any manual follow-on process |
-| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created         |
-| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for production                                                       |
-| `JWT_SECRET_STAGING`                    | JWT secret generated for for staging                                                          |
-| `NUGET_AUTH_GITHUB_TOKEN`               | TBC                                                                                           |
-| `NUGET_AUTH_GITHUB_USERNAME`            | TBC                                                                                           |
-| `SENTRY_DSN`                            | TBC                                                                                           |
-| `SERVICE_NAME`                          | `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`                                           |
-| `SOR_CONFIG`                            | SOR codes in JSON format                                                                      |
-| `STATE_KEY_NAME`                        | The name of your static site                                                                  |
-| `STORAGE_CONTAINER_NAME_PRODUCTION`     | `housing-repairs-online`                                                                      |
-| `STORAGE_CONTAINER_NAME_STAGING`        | `housing-repairs-online-staging`                                                              |
+| Secret name                             | Description                                                                                                  |
+| --------------------------------------- |--------------------------------------------------------------------------------------------------------------|
+| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve this App Service once HousingManagementSystemApi is deployed                                        |
+| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service *Staging* slot HousingManagementSystemApi is deployed                              |
+| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed                                            |
+| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service *Staging* slot HousingRepairsSchedulingApi is deployed                             |
+| `AUTHENTICATION_IDENTIFIER`             | A unique identifier used to validate access used to validate access                                          |
+| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                 |
+| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                   |
+| `DAYS_UNTIL_IMAGE_EXPIRY`               | Number in days before image uploaded by customer expires, e.g. `14` days                                     |
+| `GOV_NOTIFY_KEY_PRODUCTION`             | Staging gov notify key                                                                                       |
+| `GOV_NOTIFY_KEY_STAGING`                | Production gov notify key                                                                                    |
+| `INTERNAL_EMAIL`                        | Internal email address for receiving repair request details, for any manual follow-on process                |
+| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                        |
+| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for production                                                                      |
+| `JWT_SECRET_STAGING`                    | JWT secret generated for for staging                                                                         |
+| `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                               |
+| `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                           |
+| `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                       |
+| `SERVICE_NAME`                          | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
+| `SOR_CONFIG`                            | SOR codes in JSON format                                                                                     |
+| `STATE_KEY_NAME`                        | The name of your static site                                                                                 |
+| `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for production, e.g. `housing-repairs-online`                                         |
+| `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step. However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 Once this is done, navigate to the App Services, in the Azure web portal, then navigate to the housing repairs online API App Service and copy the URL. Add this to GitHub actions secret as `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION`. Then, under the`Deployment` section, select `Deployment slots`, select the staging app and copy the URL for staging and add this to GitHub actions as `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING`. Once this is complete, you can rerun the workflow and all of the steps should pass.
