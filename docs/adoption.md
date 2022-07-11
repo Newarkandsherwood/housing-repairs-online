@@ -125,7 +125,9 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
+
 Once this is done, we will need to set the `AZUREAPPSERVICE_PUBLISHPROFILE_...` secrets, by downloading the publish profiles from the Azure web portal setting the secrets to their contents. To do this, navigate to App Services and from here navigate to the housing repairs online API App Service. Click `Get publish profile` to download the production publish profile. Now click `Deployment slots` (in the navigation pane on the left) and select the staging slot. Now click `Get publish profile` to download the staging publish profile.
+
 Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION` and `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING` to the contents of the respective publish profiles downloaded previously. Once this is complete, you can rerun the workflow and all of the steps should pass.
 
 ## Integration
