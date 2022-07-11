@@ -95,6 +95,41 @@ Now you have added all the resources that you need in Azure in Terraform, you ar
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
+### Deploy housing-repairs-online-api
+
+To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
+
+| Secret name                             | Description                                                                                                  |
+| --------------------------------------- |--------------------------------------------------------------------------------------------------------------|
+| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve this App Service once HousingManagementSystemApi is deployed                                        |
+| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service *Staging* slot HousingManagementSystemApi is deployed                              |
+| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed                                            |
+| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service *Staging* slot HousingRepairsSchedulingApi is deployed                             |
+| `AUTHENTICATION_IDENTIFIER`             | A unique identifier used to validate access used to validate access                                          |
+| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                 |
+| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                   |
+| `DAYS_UNTIL_IMAGE_EXPIRY`               | Number in days before image uploaded by customer expires, e.g. `14` days                                     |
+| `GOV_NOTIFY_KEY_PRODUCTION`             | Staging gov notify key                                                                                       |
+| `GOV_NOTIFY_KEY_STAGING`                | Production gov notify key                                                                                    |
+| `INTERNAL_EMAIL`                        | Internal email address for receiving repair request details, for any manual follow-on process                |
+| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                        |
+| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for production                                                                      |
+| `JWT_SECRET_STAGING`                    | JWT secret generated for for staging                                                                         |
+| `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                               |
+| `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                           |
+| `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                       |
+| `SERVICE_NAME`                          | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
+| `SOR_CONFIG`                            | SOR codes in JSON format                                                                                     |
+| `STATE_KEY_NAME`                        | The name of your static site                                                                                 |
+| `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for production, e.g. `housing-repairs-online`                                         |
+| `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
+
+Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
+
+Once this is done, we will need to set the `AZUREAPPSERVICE_PUBLISHPROFILE_...` secrets, by downloading the publish profiles from the Azure web portal setting the secrets to their contents. To do this, navigate to App Services and from here navigate to the housing repairs online API App Service. Click `Get publish profile` to download the production publish profile. Now click `Deployment slots` (in the navigation pane on the left) and select the staging slot. Now click `Get publish profile` to download the staging publish profile.
+
+Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION` and `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING` to the contents of the respective publish profiles downloaded previously. Once this is complete, you can rerun the workflow and all of the steps should pass.
+
 ## Integration
 
 ### Components
