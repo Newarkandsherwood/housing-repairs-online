@@ -149,11 +149,41 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                               |
 | `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                           |
 | `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                       |
-| `SERVICE_NAME`                          | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
+| `SERVICE_NAME`                          | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
 | `SOR_CONFIG`                            | SOR codes in JSON format                                                                                     |
-| `STATE_KEY_NAME`                        | The name of your static site                                                                                 |
+| `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                          |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for production, e.g. `housing-repairs-online`                                         |
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
+
+Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
+
+Once this is done, we will need to set the `AZUREAPPSERVICE_PUBLISHPROFILE_...` secrets, by downloading the publish profiles from the Azure web portal setting the secrets to their contents. To do this, navigate to App Services and from here navigate to the housing repairs online API App Service. Click `Get publish profile` to download the production publish profile. Now click `Deployment slots` (in the navigation pane on the left) and select the staging slot. Now click `Get publish profile` to download the staging publish profile.
+
+Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION` and `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING` to the contents of the respective publish profiles downloaded previously. Once this is complete, you can rerun the workflow and all of the steps should pass.
+
+### Deploy housing-repairs-online-api
+
+To deploy the housing repairs api, you must populate github actions with the following secrets:
+
+| Secret name                  | Description                                                                                                       |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `APP_SERVICE_NAME`           | App Service name (must be unique across whole of Azure), e.g. `HousingManagementSystemApi-{LOCAL_AUTHORITY_NAME}` |
+| `SERVICE_PLAN_NAME`          | App Service Plan name,  e.g. `housing-repairs-online`                                                             |
+| `AUTHENTICATION_IDENTIFIER`  | A unique identifier used to validate access used to validate access                                               |
+| `AZURE_AD_CLIENT_SECRET`     | This is the client secret value that was generated for the service principal in section 4 of Create a service     |
+| `AZURE_AD_CLIENT_ID`         | This is the Application (client) ID                                                                               |
+| `AZURE_AD_TENANT_ID`         | This is the Directory (tenant) ID                                                                                 |
+| `AZURE_SUBSCRIPTION_ID`      | Navigate to subscriptions and select the Subscription ID for your subscription                                    |
+| `JWT_SECRET_PRODUCTION`      | JWT secret generated for for production                                                                           |
+| `JWT_SECRET_STAGING`         | JWT secret generated for for staging                                                                              |
+| `NUGET_AUTH_GITHUB_TOKEN`    | Authentication token for authenticating with GitHub NuGet feed                                                    |
+| `NUGET_AUTH_GITHUB_USERNAME` | Username for authenticating with GitHub NuGet feed                                                                |
+| `SENTRY_DSN`                 | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                            |
+| `RESOURCE_GROUP_LOCATION`    | The resource group location housing your Terraform state file, e.g. `UK South`                                    |
+| `RESOURCE_GROUP_NAME`        | The resource group name housing your Terraform state file                                                         |
+| `STORAGE_ACCOUNT_NAME`       | The name of the Azure Storage Account to house your Terraform state file                                          |
+| `STATE_CONTAINER_NAME`       | The name of the Azure Blob Storage container to house your Terraform state file                                   |
+| `STATE_KEY_NAME`             | The file path and name of your Terraform state file                                                               |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
