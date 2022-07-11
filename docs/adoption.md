@@ -124,7 +124,7 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for production, e.g. `housing-repairs-online`                                         |
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
 
-Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step. However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
+Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 Once this is done, navigate to the App Services, in the Azure web portal, then navigate to the housing repairs online API App Service and copy the URL. Add this to GitHub actions secret as `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION`. Then, under the`Deployment` section, select `Deployment slots`, select the staging app and copy the URL for staging and add this to GitHub actions as `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING`. Once this is complete, you can rerun the workflow and all of the steps should pass.
 
 ## Integration
