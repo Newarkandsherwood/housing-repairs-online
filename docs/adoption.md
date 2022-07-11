@@ -105,7 +105,7 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service *Staging* slot HousingManagementSystemApi is deployed  |
 | `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed                |
 | `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service *Staging* slot HousingRepairsSchedulingApi is deployed |
-| `AUTHENTICATION_IDENTIFIER`             | TBC                                                                              |
+| `AUTHENTICATION_IDENTIFIER`             | A unique identifier used to validate access used to validate access              |
 | `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created     |
 | `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created       |
 | `DAYS_UNTIL_IMAGE_EXPIRY`               | E.g. `14` days before image uploaded by customer expires                         |
