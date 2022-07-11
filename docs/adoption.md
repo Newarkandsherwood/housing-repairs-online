@@ -89,12 +89,6 @@ Once you have added a remote backend to your Terraform and created a service pri
 
 4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
 
-### Deploy housing-repairs-online-frontend
-
-Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
-
-_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
-
 ### Deploy housing-repairs-online-api
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
@@ -150,5 +144,14 @@ See [Alerting & Monitoring](./alerting-and-monitoring/intro) for details.
 Each component's configuration is outlined in their own specific documentation.
 
 Please refer to this documentation to configure each component.
+
+### Documentation
+
+This documentation uses [Docusaurus](https://docusaurus.io/) and is generated via Github actions.
+
+After the [housing-repairs-online](https://github.com/City-of-Lincoln-Council/housing-repairs-online) repository has been cloned/forked, follow these steps to ensure GitHub regenerates documentation when changes are made:
+
+- Set the branch to use for GitHub pages to `gh-pages` ([see here](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site))
+- Configure the repository by adding a Deploy Key and `ACTIONS_DEPLOY_KEY` Secret ([see here](https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-create-ssh-deploy-key))
 
 [^1]: When creating resource in Azure, if using Github integration, some of these secrets will be automatically added to the repository.
