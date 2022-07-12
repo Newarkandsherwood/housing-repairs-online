@@ -163,7 +163,7 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 
 ### Deploy Housing Management System API
 
-To deploy the housing repairs api, you must populate github actions with the following secrets:
+To deploy the Housing Management System API, you must populate github actions with the following secrets:
 
 | Secret name                  | Description                                                                                                       |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------|
