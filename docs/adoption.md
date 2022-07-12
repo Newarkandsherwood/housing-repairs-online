@@ -161,7 +161,7 @@ Once this is done, we will need to set the `AZUREAPPSERVICE_PUBLISHPROFILE_...` 
 
 Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION` and `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING` to the contents of the respective publish profiles downloaded previously. Once this is complete, you can rerun the workflow and all of the steps should pass.
 
-### Deploy housing-repairs-online-api
+### Deploy Housing Management System API
 
 To deploy the housing repairs api, you must populate github actions with the following secrets:
 
