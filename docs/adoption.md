@@ -95,6 +95,37 @@ Now you have added all the resources that you need in Azure in Terraform, you ar
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
+### Deploy Scheduling API
+
+To deploy the Scheduling API, you must populate the GitHub repository the following secrets:
+
+| Secret name                  | Description                                                                                                          |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `APP_SERVICE_NAME`           | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-scheduling-api-{LOCAL_AUTHORITY_NAME}`     |
+| `AUTHENTICATION_IDENTIFIER`  | A unique identifier used to validate access used to validate access                                                  |
+| `DRS_API_ADDRESS`            | DRS API address, e.g. `https://yourserver/OTWebServiceGateway_INSTANCENAME/ws/soap?wsdl`                             |
+| `DRS_CONTRACT`               | Contract value to use when making requests to DRS                                                                    |
+| `DRS_LOGIN`                  | DRS login/user name                                                                                                  |
+| `DRS_PASSWORD`               | DRS password                                                                                                         |
+| `DRS_PRIORITY`               | Priority to use when making requests to DRS                                                                          |
+| `JWT_SECRET_PRODUCTION`      | JWT secret generated for for production                                                                              |
+| `JWT_SECRET_STAGING`         | JWT secret generated for for staging                                                                                 |
+| `NUGET_AUTH_GITHUB_TOKEN`    | Authentication token for authenticating with GitHub NuGet feed                                                       |
+| `NUGET_AUTH_GITHUB_USERNAME` | Username for authenticating with GitHub NuGet feed                                                                   |
+| `RESOURCE_GROUP_LOCATION`    | Azure Resource Group location, e.g. `UK South`                                                                       |
+| `RESOURCE_GROUP_NAME`        | Azure Resource Group name                                                                                            |
+| `SENTRY_DSN`                 | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                               |
+| `SERVICE_PLAN_NAME`          | Service plan name (must be unique across whole of Azure) e.g. `housing-repairs-schduling-api-{LOCAL_AUTHORITY_NAME}` |
+| `STATE_CONTAINER_NAME`       | The name of the container to store Terraform state in                                                                |
+| `STATE_KEY_NAME`             | The file path and name of your Terraform state file                                                                  |
+| `STORAGE_ACCOUNT_NAME`       | Storage account name for Terraform state, e.g. `housing-repairs-online`                                              |
+
+Once you have entered all of the environment variables, you should re-run the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
+
+Once this is done, we will need to set the `AZUREAPPSERVICE_PUBLISHPROFILE_...` secrets, by downloading the publish profiles from the Azure web portal setting the secrets to their contents. To do this, navigate to App Services and from here navigate to the housing repairs scheduling API App Service. Click `Get publish profile` to download the production publish profile. Now click `Deployment slots` (in the navigation pane on the left) and select the staging slot. Now click `Get publish profile` to download the staging publish profile.
+
+Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTION` and `AZUREAPPSERVICE_PUBLISHPROFILE_STAGING` to the contents of the respective publish profiles downloaded previously. Once this is complete, you can rerun the workflow and all of the steps should pass.
+
 ### Deploy housing-repairs-online-api
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
