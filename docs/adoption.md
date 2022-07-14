@@ -100,9 +100,9 @@ _There will be some future work to prevent the manual entry of the AZURE STATIC 
 To deploy the Housing Management System API, you must populate github actions with the following secrets:
 
 | Secret name                  | Description                                                                                                       |
-|------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `APP_SERVICE_NAME`           | App Service name (must be unique across whole of Azure), e.g. `HousingManagementSystemApi-{LOCAL_AUTHORITY_NAME}` |
-| `SERVICE_PLAN_NAME`          | App Service Plan name,  e.g. `housing-repairs-online`                                                             |
+| `SERVICE_PLAN_NAME`          | App Service Plan name, e.g. `housing-repairs-online`                                                              |
 | `AUTHENTICATION_IDENTIFIER`  | A unique identifier used to validate access used to validate access                                               |
 | `AZURE_AD_CLIENT_SECRET`     | This is the client secret value that was generated for the service principal in section 4 of Create a service     |
 | `AZURE_AD_CLIENT_ID`         | This is the Application (client) ID                                                                               |
@@ -130,7 +130,7 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 To deploy the Scheduling API, you must populate the GitHub repository the following secrets:
 
 | Secret name                            | Description                                                                                                          |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `APP_SERVICE_NAME`                     | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-scheduling-api-{LOCAL_AUTHORITY_NAME}`     |
 | `AUTHENTICATION_IDENTIFIER_PRODUCTION` | A unique identifier used to validate access used to validate access in production                                    |
 | `AUTHENTICATION_IDENTIFIER_STAGING`    | A unique identifier used to validate access used to validate access in staging                                       |
@@ -167,18 +167,21 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
 | Secret name                             | Description                                                                                                  |
-| --------------------------------------- |--------------------------------------------------------------------------------------------------------------|
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `ADDRESSES_API_URL_PRODUCTION`          | Retrieve this App Service once HousingManagementSystemApi is deployed                                        |
-| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service *Staging* slot HousingManagementSystemApi is deployed                              |
+| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service _Staging_ slot HousingManagementSystemApi is deployed                              |
 | `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service HousingRepairsSchedulingApi is deployed                                            |
-| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service *Staging* slot HousingRepairsSchedulingApi is deployed                             |
-| `AUTHENTICATION_IDENTIFIER`             | A unique identifier used to validate access used to validate access                                          |
+| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service _Staging_ slot HousingRepairsSchedulingApi is deployed                             |
+| `AUTHENTICATION_IDENTIFIER_PRODUCTION`  | A unique identifier used to validate access used to validate access for production                           |
+| `AUTHENTICATION_IDENTIFIER_STAGING`     | A unique identifier used to validate access used to validate access for staging                              |
 | `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                 |
 | `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                   |
-| `DAYS_UNTIL_IMAGE_EXPIRY`               | Number in days before image uploaded by customer expires, e.g. `14` days                                     |
+| `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`    | Number in days before image uploaded by customer expires for production, e.g. `14` days                      |
+| `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`       | Number in days before image uploaded by customer expires for staging, e.g. `14` days                         |
 | `GOV_NOTIFY_KEY_PRODUCTION`             | Staging gov notify key                                                                                       |
 | `GOV_NOTIFY_KEY_STAGING`                | Production gov notify key                                                                                    |
-| `INTERNAL_EMAIL`                        | Internal email address for receiving repair request details, for any manual follow-on process                |
+| `INTERNAL_EMAIL_PRODUCTION`             | Internal email address for receiving repair request details, for any manual follow-on process in production  |
+| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in staging     |
 | `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                        |
 | `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for production                                                                      |
 | `JWT_SECRET_STAGING`                    | JWT secret generated for for staging                                                                         |
@@ -186,7 +189,8 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                           |
 | `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                       |
 | `SERVICE_NAME`                          | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
-| `SOR_CONFIG`                            | SOR codes in JSON format                                                                                     |
+| `SOR_CONFIG_PRODUCTION`                 | SOR codes in JSON format for production                                                                      |
+| `SOR_CONFIG_STAGING`                    | SOR codes in JSON format for staging                                                                         |
 | `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                          |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for production, e.g. `housing-repairs-online`                                         |
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for staging, e.g. `housing-repairs-online-staging`                                    |
