@@ -181,7 +181,7 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `GOV_NOTIFY_KEY_PRODUCTION`             | _Staging_ gov notify key                                                                                     |
 | `GOV_NOTIFY_KEY_STAGING`                | _Production_ gov notify key                                                                                  |
 | `INTERNAL_EMAIL_PRODUCTION`             | Internal email address for receiving repair request details, for any manual follow-on process in _Production_  |
-| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in staging     |
+| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_     |
 | `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                        |
 | `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for _Production_                                                                    |
 | `JWT_SECRET_STAGING`                    | JWT secret generated for for _Staging_                                                                       |
