@@ -93,6 +93,13 @@ Once you have added a remote backend to your Terraform and created a service pri
 
 Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
+Once the App has been deployed, and all the API's have been deployed, navigate to the static web app, under settings, select configuration. Add the following environment variables:
+
+| Secret name              | Description                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `REPAIRS_API_BASE_URL`   | Housing repairs online API URL, this can obtained from the App Service the API was deployed to |
+| `REPAIRS_API_IDENTIFIER` | A unique identifier used to validate access in production                                      |
+
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
 ## Deploying the API's
@@ -104,9 +111,9 @@ Each of the API's will be deployed to Azure App service. They will all exist und
 To deploy the Housing Management System API, you must populate github actions with the following secrets:
 
 | Secret name                            | Description                                                                                                       |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `APP_SERVICE_NAME`                     | App Service name (must be unique across whole of Azure), e.g. `HousingManagementSystemApi-{LOCAL_AUTHORITY_NAME}` |
-| `SERVICE_PLAN_NAME`                    | App Service Plan name,  e.g. `housing-repairs-online`                                                             |
+| `SERVICE_PLAN_NAME`                    | App Service Plan name, e.g. `housing-repairs-online`                                                              |
 | `AUTHENTICATION_IDENTIFIER_PRODUCTION` | A unique identifier used to validate access in production                                                         |
 | `AUTHENTICATION_IDENTIFIER_STAGING`    | A unique identifier used to validate access in staging                                                            |
 | `AZURE_AD_CLIENT_SECRET`               | This is the client secret value that was generated for the service principal in section 4 of Create a service     |
@@ -171,34 +178,34 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
-| Secret name                             | Description                                                                                                  |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve from App Service once HousingManagementSystemApi is deployed                                        |
-| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                         |
-| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                       |
-| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                        |
-| `AUTHENTICATION_IDENTIFIER_PRODUCTION`  | A unique identifier used to validate access for _Production_                                                 |
-| `AUTHENTICATION_IDENTIFIER_STAGING`     | A unique identifier used to validate access for _Staging_                                                    |
-| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                 |
-| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                   |
-| `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`    | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                    |
-| `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`       | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                       |
-| `GOV_NOTIFY_KEY_PRODUCTION`             | _Staging_ gov notify key                                                                                     |
-| `GOV_NOTIFY_KEY_STAGING`                | _Production_ gov notify key                                                                                  |
-| `INTERNAL_EMAIL_PRODUCTION`             | Internal email address for receiving repair request details, for any manual follow-on process in _Production_  |
-| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_     |
-| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                        |
-| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for _Production_                                                                    |
-| `JWT_SECRET_STAGING`                    | JWT secret generated for for _Staging_                                                                       |
-| `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                               |
-| `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                           |
-| `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                       |
-| `SERVICE_NAME`                          | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}` |
-| `SOR_CONFIG_PRODUCTION`                 | SOR codes in JSON format for _Production_                                                                    |
-| `SOR_CONFIG_STAGING`                    | SOR codes in JSON format for _Staging_                                                                       |
-| `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                          |
-| `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for _Production_, e.g. `housing-repairs-online`                                       |
-| `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                  |
+| Secret name                             | Description                                                                                                   |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
+| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
+| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
+| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
+| `AUTHENTICATION_IDENTIFIER_PRODUCTION`  | A unique identifier used to validate access for _Production_                                                  |
+| `AUTHENTICATION_IDENTIFIER_STAGING`     | A unique identifier used to validate access for _Staging_                                                     |
+| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                  |
+| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                    |
+| `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`    | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
+| `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`       | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
+| `GOV_NOTIFY_KEY_PRODUCTION`             | _Staging_ gov notify key                                                                                      |
+| `GOV_NOTIFY_KEY_STAGING`                | _Production_ gov notify key                                                                                   |
+| `INTERNAL_EMAIL_PRODUCTION`             | Internal email address for receiving repair request details, for any manual follow-on process in _Production_ |
+| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_    |
+| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                         |
+| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for _Production_                                                                     |
+| `JWT_SECRET_STAGING`                    | JWT secret generated for for _Staging_                                                                        |
+| `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                                |
+| `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                            |
+| `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                        |
+| `SERVICE_NAME`                          | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`  |
+| `SOR_CONFIG_PRODUCTION`                 | SOR codes in JSON format for _Production_                                                                     |
+| `SOR_CONFIG_STAGING`                    | SOR codes in JSON format for _Staging_                                                                        |
+| `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                           |
+| `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
+| `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
