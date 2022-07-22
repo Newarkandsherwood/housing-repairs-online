@@ -93,14 +93,14 @@ Once you have added a remote backend to your Terraform and created a service pri
 
 Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
-Once the App has been deployed, and all the API's have been deployed, navigate to the static web app, under settings, select configuration. Add the following environment variables:
+_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
+
+Once the App has been deployed, and all the API's have been deployed, navigate to the static web app, under settings, select configuration. Add the environment variables below.
 
 | Secret name              | Description                                                                                    |
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | `REPAIRS_API_BASE_URL`   | Housing repairs online API URL, this can obtained from the App Service the API was deployed to |
 | `REPAIRS_API_IDENTIFIER` | A unique identifier used to validate access in production                                      |
-
-_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
 ## Deploying the API's
 
