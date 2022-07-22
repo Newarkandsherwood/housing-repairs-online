@@ -95,6 +95,10 @@ Now you have added all the resources that you need in Azure in Terraform, you ar
 
 _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
+## Deploying the API's
+
+Each of the API's will be deployed to Azure App service. They will all exist under the same App Service Plan, which will be created manually. To create an App Service Plan, search `App service plans` on the azure portal, select `Create`, ensure you select the resource group created above and select an appropriate name for the App Service Plan e.g. `housing-repairs-online-{LOCAL_AUTHORITY_NAME}`
+
 ### Deploy Housing Management System API
 
 To deploy the Housing Management System API, you must populate github actions with the following secrets:
