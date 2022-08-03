@@ -42,7 +42,10 @@ Create the following resouces in Azure:
   - 2 databases - production and staging
   - Each with `repair-requests` collections
 - Blob storage account
-  - Create 2 containers - production and staging
+  - Create 2 containers - production and staging for the storage of user-uploaded images
+  - Create a container for Terraform State Storage - 'tfstate'
+  - Create a container for insight report address .csv files: 'insight-report-addresses'
+
 
 ### Frontend
 
