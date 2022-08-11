@@ -45,7 +45,16 @@ Create the following resouces in Azure:
   - Create 2 containers - production and staging for the storage of user-uploaded images
   - Create a container for Terraform State Storage - 'tfstate'
   - Create a container for insight report address .csv files: 'insight-report-addresses'
-
+- Resource Provider Registrations
+  - Some resources require that the subscription is registered to use their respective namespace.
+  - Key vault and managed identity are examples of such resources. See [here](application-security/intro.md).
+- Key Vault
+  - Consider whether to have a key vault per environment e.g Staging API key vault, Production API key vault.
+  - Create a key vault for each API at least, best practice is not to have one key vault to hold all secrets.
+  - Seperate the key vaults appropriately based on needs, cost and use.
+- Managed Identity for Key Vault
+  - Create a managed identity for each API (would recommend creating a user assigned identity).
+  - Add key vault permissions to the identity so that the attached app service has access the relevant key vault.
 
 ### Frontend
 
