@@ -85,27 +85,27 @@ Terraform is an infrastructure as code tool which we will be using to provision 
 
 Once you have added a remote backend to your Terraform and created a service principal, GitHub actions should be configured to deploy resources to Azure using Terraform. We will be using the [setup-terraform](https://github.com/hashicorp/setup-terraform) action to run Terraform in github actions
 
-1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
+  1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-| Secret name              | Value                                                                                                         |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
-| `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
-| `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
-| `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |
-| `STATIC_SITE_NAME`       | The name of your static site                                                                                  |
+      | Secret name              | Value                                                                                                         |
+      | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
+      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
+      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
+      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |
+      | `STATIC_SITE_NAME`       | The name of your static site                                                                                  |
 
-2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
+  2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
-3. Add STATE_KEY_NAME as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
+  3. Add STATE_KEY_NAME as a repository secret. This is the storage account key for your Terraform backend. You can obtain this value if you navigate to Storage accounts, select the storage account for your Terraform backend, select Access Keys, click on show keys and copy the top key value. (Note: These are rotating keys and are subject to change, this tutorial does not investigate how to work around this)
 
-4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
+  4. [This](https://github.com/Newarkandsherwood/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml) is a link for an example workflow
 
 ### Deploy housing-repairs-online-frontend
 
 Now you have added all the resources that you need in Azure in Terraform, you are ready for the CI to apply the Terraform and deploy. The first CI run will provision the Azure static web app resource (however the deployment will fail and this is expected). Log in to the Azure web portal, navigate to the static webb app you provisioned and copy the `Manage deployment token` value. Add this to github actions secret with the name `AZURE_STATIC_WEB_APPS_API_TOKEN`. As you have now added this secret, the deployment should pass successfully on the second run.
 
-_There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
+Note: _There will be some future work to prevent the manual entry of the AZURE STATIC WEB APPS API TOKEN secret_
 
 Once the App has been deployed, and all the API's have been deployed, navigate to the static web app, under settings, select configuration. Add the environment variables below.
 
@@ -189,20 +189,22 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 ### Deploy housing-repairs-online-api
 
 #### Github Action logs Masking Secrets
-The below secrets must be entered to reduce the risk of leaking in the Github actions logs. In github actions, we use masks to obscure secrets. The below secrets must be added with the correct values in github. The values of the secrets can be obtained from the Azure dashboard once the Terraform deploy is run for the first time.  
 
-**Without the below secrets in Github, the masking will not work for these values and there will then be the real possibility of these values not being covered by the GitHub masking and being publically exposed through the debug logs.**
+The below secrets must be entered to reduce the risk of them leaking in the Github actions logs when debug logging is enabled. In github actions, we use masks to obscure secrets. The values of these secrets can be obtained from their Cloud resources dashboard, once the Terraform deploy is run for the first time.  
 
-| Secret name                             | Description                                                                                                   |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `COSMOS_CONTAINER_NAME_PRODUCTION`        | | 
-| `COSMOS_CONTAINER_NAME_STAGING`        | | 
-| `COSMOS_ACCOUNT_PRIMARY_KEY`        | | 
-| `COSMOS_DATABASE_NAME_PRODUCTION`        | | 
-| `COSMOS_DATABASE_NAME_STAGING`        | | 
-| `COSMOS_ACCOUNT_ENDPOINT`        | | 
-| `STORAGE_ACCOUNT_PRIMARY_CONNECTION_STRING`        | | 
+> ⚠ WARNING:  **Without the below secrets saved in Github, you will not be able to use Github action's mask command with the secret. Github action's mask command need to be explicitly told each secret it should obscure in logs. Any values in the app settings config not saved as a Github secret will have the risk of being publically exposed whenever the deploy job is run with debug enabled.**
 
+Populate github secrets with the following values so that we can add the use the masking commands on them. **Do this before deploying the app with it's publish profile.**
+
+| Secret name          | Description |
+| ----------- | ----------- |
+| `COSMOS_CONTAINER_NAME_PRODUCTION`        | DocumentDB (e.g. CosmosDB) container name for _Production_, e.g. `housing-repairs-online-production` |
+| `COSMOS_CONTAINER_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) container name for _Staging_, e.g. `housing-repairs-online-staging`  |
+| `COSMOS_ACCOUNT_PRIMARY_KEY`        | DocumentDB (e.g. CosmosDB) account primary key |
+| `COSMOS_DATABASE_NAME_PRODUCTION`        | DocumentDB (e.g. CosmosDB) database name for _Production_, e.g. `housing-repairs-production` |
+| `COSMOS_DATABASE_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) database name for _Staging_, e.g. `housing-repairs-staging`  | 
+| `COSMOS_ACCOUNT_ENDPOINT`        | DocumentDB (e.g. CosmosDB) account endpoint URL |
+| `STORAGE_ACCOUNT_PRIMARY_CONNECTION_STRING`        | Storage account primary connection string |
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
@@ -234,9 +236,6 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                           |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
-
-
-
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
