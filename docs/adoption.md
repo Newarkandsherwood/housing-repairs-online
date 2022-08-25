@@ -188,6 +188,22 @@ Finally, in GitHub actions secrets, set `AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTI
 
 ### Deploy housing-repairs-online-api
 
+#### Github Action logs Masking Secrets
+The below secrets must be entered to reduce the risk of leaking in the Github actions logs. In github actions, we use masks to obscure secrets. The below secrets must be added with the correct values in github. The values of the secrets can be obtained from the Azure dashboard once the Terraform deploy is run for the first time.  
+
+**Without the below secrets in Github, the masking will not work for these values and there will then be the real possibility of these values not being covered by the GitHub masking and being publically exposed through the debug logs.**
+
+| Secret name                             | Description                                                                                                   |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `COSMOS_CONTAINER_NAME_PRODUCTION`        | | 
+| `COSMOS_CONTAINER_NAME_STAGING`        | | 
+| `COSMOS_ACCOUNT_PRIMARY_KEY`        | | 
+| `COSMOS_DATABASE_NAME_PRODUCTION`        | | 
+| `COSMOS_DATABASE_NAME_STAGING`        | | 
+| `COSMOS_ACCOUNT_ENDPOINT`        | | 
+| `STORAGE_ACCOUNT_PRIMARY_CONNECTION_STRING`        | | 
+
+
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
 | Secret name                             | Description                                                                                                   |
@@ -218,6 +234,9 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                           |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
 | `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
+
+
+
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
