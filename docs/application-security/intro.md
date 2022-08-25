@@ -9,8 +9,28 @@ When using Azure and Github actions, care should be taken to not run github acti
 There is a risk if any of the App service configuration values are sensitive because they would be printed into the github actions log if the workflow is run in debug mode.
 
 #### Mitigations
+The only 100% effective way of mitigating the leaking of sensitive values is to use GitHub's log masking functionality. This can be used in conjunction with Azure key Vault.
 
-##### Secrets Store Setup (Azure Key Vault) for App Service
+### GitHub Masking
+GitHub masking is a way  of defining masks that are applied to all Github Logs, including the logs output by 3rd party components.
+
+References:
+- https://www.tutorialworks.com/github-actions-mask-url/
+- https://pakstech.com/blog/github-actions-workflow-commands/
+- https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-log
+
+Add masks in the following way in the GitHub pipeline workflow config. They must be added as part of the job that you wish masking to be applied to. It does not work if you put the step in its own job since the changes only apply to the job that the step is included with. 
+
+Example code block:
+```yaml
+steps:
+      - name: Add mask to obscure secrets in debug logs
+        run: |
+          echo "::add-mask::${{ secrets.COSMOS_CONTAINER_NAME_STAGING }}"
+```
+An add-mask command is needed for each secret that you wish to obscure in the logs.
+
+### Secrets Store Setup (Azure Key Vault) for App Service
 
 1. Register the Microsoft.ManagedIdentity and Microsoft.KeyVault resource providers to your subscription
     The Azure Subsctription must be registered to use the following namespaces:
