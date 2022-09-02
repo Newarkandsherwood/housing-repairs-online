@@ -28,7 +28,7 @@ steps:
         run: |
           echo "::add-mask::${{ secrets.COSMOS_CONTAINER_NAME_STAGING }}"
 ```
-An add-mask command is needed for each secret that you wish to obscure in the logs.
+An `add-mask` command is needed for each secret that you wish to obscure in the logs.
 
 ### Secrets Store Setup (Azure Key Vault) for App Service
 
