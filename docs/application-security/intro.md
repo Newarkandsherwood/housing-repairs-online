@@ -9,7 +9,7 @@ When using Azure and Github actions, care should be taken to not run github acti
 There is a risk if any of the App service configuration values are sensitive because they would be printed into the github actions log if the workflow is run in debug mode.
 
 #### Mitigations
-The only 100% effective way of mitigating the leaking of sensitive values is to use GitHub's log masking functionality. This can be used in conjunction with Azure key Vault.
+The only way of mitigating the leaking of sensitive values in the GitHub logs is to use GitHub's log masking functionality. This can be used in conjunction with Azure key Vault.
 
 ### GitHub Masking
 GitHub masking is a way  of defining masks that are applied to all Github Logs, including the logs output by 3rd party components.
