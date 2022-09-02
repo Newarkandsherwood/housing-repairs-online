@@ -12,7 +12,7 @@ There is a risk if any of the App service configuration values are sensitive bec
 The only way of mitigating the leaking of sensitive values in the GitHub logs is to use GitHub's log masking functionality. This can be used in conjunction with Azure key Vault.
 
 ### GitHub Masking
-GitHub masking is a way  of defining masks that are applied to all Github Logs, including the logs output by 3rd party components.
+GitHub masking is a way of defining masks that are applied to all Github Logs, including the logs output by 3rd party components.
 
 References:
 - https://www.tutorialworks.com/github-actions-mask-url/
