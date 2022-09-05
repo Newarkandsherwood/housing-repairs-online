@@ -1,0 +1,8 @@
+{
+  "label": "Architecture Decision Records (ADRs)",
+  "position": 10,
+  "link": {
+    "type": "doc",
+    "id": "index"
+  } 
+}
