@@ -8,3 +8,4 @@ ADRs are generated and maintained using Nat Pryce's [adr-tools](https://github.c
 
 ## Records
 * [1. Record architecture decisions](./record-architecture-decisions)
+* [2. Data Driven UI](./data-driven-ui)
