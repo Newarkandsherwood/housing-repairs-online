@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhousing_repairs_online=self.webpackChunkhousing_repairs_online||[]).push([[3770],{1426:function(n){n.exports=JSON.parse('{"label":"hola","permalink":"/housing-repairs-online/blog/tags/hola","allTagsPath":"/housing-repairs-online/blog/tags","count":1}')}}]);

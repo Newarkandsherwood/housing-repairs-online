@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhousing_repairs_online=self.webpackChunkhousing_repairs_online||[]).push([[5422],{146:function(s){s.exports=JSON.parse('{"label":"docusaurus","permalink":"/housing-repairs-online/blog/tags/docusaurus","allTagsPath":"/housing-repairs-online/blog/tags","count":4}')}}]);
