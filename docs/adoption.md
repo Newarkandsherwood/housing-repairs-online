@@ -142,6 +142,13 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `STORAGE_ACCOUNT_NAME`                 | The name of the Azure Storage Account to house your Terraform state file                                          |
 | `STATE_CONTAINER_NAME`                 | The name of the Azure Blob Storage container to house your Terraform state file                                   |
 | `STATE_KEY_NAME`                       | The file path and name of your Terraform state file                                                               |
+| `COSMOS_CONTAINER_NAME_PRODUCTION`        | DocumentDB (e.g. CosmosDB) container name for _Production_, e.g. `housing-repairs-online-production` |
+| `COSMOS_CONTAINER_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) container name for _Staging_, e.g. `housing-repairs-online-staging`  |
+| `COSMOS_ACCOUNT_PRIMARY_KEY`        | DocumentDB (e.g. CosmosDB) account primary key |
+| `COSMOS_DATABASE_NAME_PRODUCTION`        | DocumentDB (e.g. CosmosDB) database name for _Production_, e.g. `housing-repairs-production` |
+| `COSMOS_DATABASE_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) database name for _Staging_, e.g. `housing-repairs-staging`  | 
+| `COSMOS_ACCOUNT_ENDPOINT`        | DocumentDB (e.g. CosmosDB) account endpoint URL |
+
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
