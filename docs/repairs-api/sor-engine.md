@@ -28,7 +28,7 @@ Here is an example of the values possible at the 3 tiers:
 | Best Description? | Door Hanging Off |
 
 :::note
-Not all journey's have 3 tier's, e.g. Kitchen - Worktop
+All journey's must have a minimum of 2 tiers and some do not have 3 tier's, e.g. Kitchen - Worktop
 
 | Tier question     | Value            |
 |-------------------|------------------|
@@ -38,205 +38,108 @@ Not all journey's have 3 tier's, e.g. Kitchen - Worktop
 :::
 
 ### Configuration
-The SoR engine is configured by specifying the SoR codes in [SoRConfig.json](https://github.com/City-of-Lincoln-Council/housing-repairs-online-api/blob/main/HousingRepairsOnlineApi/SoRConfig.json).
+The SoR engine is configured by specifying the `SOR_CONFIGURATION` environment variable.
 
-Each existing SoR code must exist and have a value.
+The configuration allows specifying the key value, display text and either options (used to gather additional information) or a SoR code.
 
-If an existing SoR code is removed, the mapping resolution will fail.
-If a new SoR code is added, it will have no effect. (The frontend would need to be updated to offer the new selection options.)
+The `SOR_CONFIGURATION` value is used to determine which options to offer at each tier (where, what and best description) and a SoR code for the combination of options.  
+The display text is shown to the user within the frontend.  
+The value specified is used as a key to identify that option. All values need to be unique and do not need to be human readable as they won't be displayed.
 
-## Example Full Configuration
+#### Early Exit Points
+An early exit point is an option selection which stops the user from continuing to make a repair request.
+The following describes the values to use for specific exit points:
+
+| Value                   | Description                                                     |
+|-------------------------|-----------------------------------------------------------------|
+| Emergency               | A option selected is identified as an emergency                 |
+| UnableToBook            | A option which is not bookable via the service                  |
+| NotEligibleNonEmergency | A option for which the Local Authority _may_ not be responsible |
+
+
+When these options are selected, appropriate information is presented to the user.
+
+## Example Configuration
+The following example has:
+- 2 and 3 tier options
+- Each of the early exit points (both at tier 2 and tier 3)
+
 ```JSON
-{
-  "kitchen":{
-    "cupboards":{
-      "doorHangingOff":"N373049",
-      "doorMissing":"N373049"
-    },
-    "worktop": "N372005",
-    "dampOrMould": {
-      "dampOrMould" : "N114001"
-    },
-    "electrical":{
-      "extractorFan":"N840031",
-      "sockets":"N861519",
-      "lightFitting":"N861005",
-      "cookerSwitch": "N835005"
-    },
-    "sink":{
-      "taps":"N631321",
-      "pipeworkLeak":"N630147",
-      "leakBlockage": "N620507",
-      "damageSink": "N630714"
-    },
-    "wallsFloorsCeiling":{
-      "wallTiles":"N431041",
-      "floorTiles":"N432005",
-      "lightFitting":"N858111",
-      "skirtingBoardArchitrave":"N381001",
-      "plasteringCeiling":"N413105",
-      "plasteringWalls":"N411121",
-      "woodenFloorboards": "N301125"
-    },
-    "door":{
-      "backDoorWooden":"N324123",
-      "backDoorUPVC":"N325117",
-      "backFrenchDoors":"N325117",
-      "internal":"N330007",
-      "sliding":"N330007"
-    },
-    "windows": {
-      "smashed": "N551055",
-      "stuckOpen": "N315001",
-      "stuckShut": "N318125",
-      "condensation": "N318151"
-    }
+[
+  {
+    "value": "kitchen",
+    "display": "Kitchen",
+    "options": [
+      {
+        "value": "cupboards",
+        "display": "Cupboards, including damaged...",
+        "options": [
+          {
+            "value": "doorHangingOff",
+            "display": "Hanging Door",
+            "sorCode": "N373049"
+          },
+          {
+            "value": "doorMissing",
+            "display": "Missing door",
+            "sorCode": "N373049"
+          }
+        ]
+      },
+      {
+        "value": "worktop",
+        "display": "Damaged worktop",
+        "sorCode": "N372005"
+      },
+      {
+        "value": "UnableToBook",
+        "display": "Heating or hot water"
+      },
+      {
+        "value": "dampOrMould",
+        "display": "Damp or mould",
+        "options": [
+          {
+            "value": "Emergency",
+            "display": "Damp or mould caused by a leak"
+          },
+          {
+            "value": "dampOrMould",
+            "display": "Damp or mould caused by something else",
+            "sorCode": "N114001"
+          }
+        ]
+      }
+    ]
   },
-  "bathroom":{
-    "bath":{
-      "bathTaps":"N631321",
-      "sealAroundBath":"N630945",
-      "bathPanel":"N630945",
-      "bathBlockage":"N630945"
-    },
-    "showerIncludingTrayAndDoor":{
-      "electricShowerUnit":"N631131",
-      "showerTap":"N631337",
-      "showerHose":"N631111",
-      "showerHead":"N631121",
-      "showerTrayBroken":"N631103",
-      "cubicleDoorBroken":"N965003",
-      "showerDrainBlocked":"N620515"
-    },
-    "sink":{
-      "taps":"N631321",
-      "damagedSink":"N630703",
-      "leakBlockage":"N620507",
-      "pipeworkLeak":"N630147"
-    },
-    "toilet":{
-      "notFlushing":"N630573",
-      "overflowing":"N630573",
-      "looseFromFloorOrWall":"N630516",
-      "cracked": "N630509"
-    },
-    "wallsFloorsCeiling":{
-      "wallTiles":"N431041",
-      "floorTiles":"N432005",
-      "lightFitting":"N858111",
-      "skirtingBoardArchitrave":"N381001",
-      "plasteringCeiling":"N413105",
-      "plasteringWalls":"N411121",
-      "woodenFloorboards": "N301125"
-    },
-    "dampOrMould": {
-      "dampOrMould" : "N114001"
-    },
-    "electricsExtractorCords": {
-      "spotLights": "N856615",
-      "tubeLights": "N856615",
-      "pullCord": "N862004",
-      "extractorFan": "N841007"
-    },
-    "windows": {
-      "smashed": "N551055",
-      "stuckOpen": "N315001",
-      "stuckShut": "N318125",
-      "condensation": "N318151"
-    },
-    "damagedOrStuckDoors": {
-      "internalDoorIssue": "N330007",
-      "lockOnDoor": "N391707"
-    }
-  },
-  "bedroom": {
-    "wallsFloorsCeiling":{
-      "wallTiles":"N431041",
-      "floorTiles":"N432005",
-      "lightFitting":"N858111",
-      "skirtingBoardArchitrave":"N381001",
-      "plasteringCeiling":"N413105",
-      "plasteringWalls":"N411121",
-      "woodenFloorboards": "N301125"
-    },
-    "electricsLightsSwitches": {
-      "lights":"N858111",
-      "sockets": "N861511"
-    },
-    "dampOrMould": {
-      "dampOrMould" : "N114001"
-    },
-    "windows": {
-      "smashed": "N551055",
-      "stuckOpen": "N315001",
-      "stuckShut": "N318125",
-      "condensation": "N318151"
-    },
-    "damagedOrStuckDoors": {
-      "internalDoorIssue": "N330007"
-    }
-  },
-  "livingAreas": {
-    "wallsFloorsCeiling":{
-      "wallTiles":"N431041",
-      "floorTiles":"N432005",
-      "lightFitting":"N858111",
-      "skirtingBoardArchitrave":"N381001",
-      "plasteringCeiling":"N413105",
-      "plasteringWalls":"N411121",
-      "woodenFloorboards": "N301125"
-    },
-    "electricsLightsSwitches": {
-      "lights":"N858111",
-      "sockets": "N861511"
-    },
-    "dampOrMould": {
-      "dampOrMould" : "N114001"
-    },
-    "windows": {
-      "smashed": "N551055",
-      "stuckOpen": "N315001",
-      "stuckShut": "N318125",
-      "condensation": "N318151"
-    },
-    "damagedOrStuckDoors": {
-      "internalDoorIssue": "N330007"
-    },
-    "stairs": {
-      "damagedSteps": "N351003",
-      "damagedPalistrades": "N351009",
-      "handRail": "N352009",
-      "stairRailLoose": "N351019"
-    }
-  },
-  "outside": {
-    "securityLights": "N880112",
-    "door": {
-      "shedDoor": "N328101",
-      "outhouseCupboardDoor": "N330001",
-      "woodenBackDoor": "N321305",
-      "upvcBackDoor": "N325117",
-      "frenchDoors": "N325117"
-    },
-    "roof": {
-      "shedOuthouseRoof": "N223011",
-      "loftInsulation": "N227005",
-      "looseTiles": "N201113",
-      "flatRoofProblems": "N217032"
-    },
-    "garage": {
-      "doorDamage": "N345203",
-      "lockDamage": "N345609",
-      "brokenInto": "N345611",
-      "roofIssueOrLeak": "N217032"
-    },
-    "gatesAndPathways": {
-      "frontGate": "N021001",
-      "backGate": "N021001",
-      "driveway": "N021005",
-      "concretePath": "N003007",
-      "steps": "N985501"
-    }
+  {
+    "value": "bedroom",
+    "display": "Bedroom",
+    "options": [
+      {
+        "value": "damagedOrStuckDoors",
+        "display": "Damaged or stuck doors",
+        "options": [
+          {
+            "value": "internalDoorIssue",
+            "display": "Internal door issue, including hinges, handle, sticking",
+            "sorCode": "N330007"
+          },
+          {
+            "value": "NotEligibleNonEmergency",
+            "display": "Adjusting a door after a carpet fitting"
+          },
+          {
+            "value": "Emergency",
+            "display": "Door is on fire"
+          },
+          {
+            "value": "UnableToBook",
+            "display": "Don't like door colour"
+          }
+        ]
+      }
+    ]
   }
-}
+]
 ```
