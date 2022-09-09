@@ -142,10 +142,10 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `STORAGE_ACCOUNT_NAME`                 | The name of the Azure Storage Account to house your Terraform state file                                          |
 | `STATE_CONTAINER_NAME`                 | The name of the Azure Blob Storage container to house your Terraform state file                                   |
 | `STATE_KEY_NAME`                       | The file path and name of your Terraform state file                                                             
-| `COSMOS_DATABASE_ID`        | DocumentDB (e.g. CosmosDB) database name , e.g. `housing-repairs` |
-| `COSMOS_TENANT_CONTAINER_ID`        | DocumentDB (e.g. CosmosDB) container name for tenant addresses, e.g. `addresses` |
-| `COSMOS_ENDPOINT_URL`        | DocumentDB (e.g. CosmosDB) account endpoint URL |
-| `COSMOS_AUTHORIZATION_KEY`        | DocumentDB (e.g. CosmosDB) account primary key |
+| `COSMOS_DATABASE_ID`                   | DocumentDB (e.g. CosmosDB) database name |
+| `COSMOS_TENANT_CONTAINER_ID`           | DocumentDB (e.g. CosmosDB) container name for tenant addresses, e.g. `addresses` |
+| `COSMOS_ENDPOINT_URL`                  | DocumentDB (e.g. CosmosDB) account endpoint URL |
+| `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key |
 
 
 
