@@ -12,6 +12,14 @@ sidebar_position: 4
 
 Bearer Token `<token>`
 
+#### Query Params
+
+| Key                      | Example value           | Required |
+|--------------------------|-------------------------| -------- |
+| emergencyValue           | emergency               | ✅       |
+| notEligibleNonEmergency  | notEligibleNonEmergency | ✅       |
+| unableToBook             | unableToBook            | ✅       |
+
 ### Response:
 
 Repair triage options
