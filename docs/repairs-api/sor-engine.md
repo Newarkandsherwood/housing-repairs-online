@@ -52,9 +52,9 @@ The following describes the values to use for specific exit points:
 
 | Value                   | Description                                                     |
 |-------------------------|-----------------------------------------------------------------|
-| Emergency               | A option selected is identified as an emergency                 |
-| UnableToBook            | A option which is not bookable via the service                  |
-| NotEligibleNonEmergency | A option for which the Local Authority _may_ not be responsible |
+| Emergency               | An option selected is identified as an emergency                 |
+| UnableToBook            | An option which is not bookable via the service                  |
+| NotEligibleNonEmergency | An option for which the Local Authority _may_ not be responsible |
 
 
 When these options are selected, appropriate information is presented to the user.
