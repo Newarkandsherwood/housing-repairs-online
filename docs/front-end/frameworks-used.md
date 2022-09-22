@@ -42,8 +42,6 @@ The following variables are required by the front end and should be setup as Git
 
 The following variables are **required** by the front end to display specific local authority details such as customer service contact numbers and should be **set up as GitHub secrets for the repository**:
 
-- `NATIONAL_GAS_EMERGENCY_SERVICE_TELEPHONE_NUMBER` -> The national gas emergency service *telephone* number
-- `NATIONAL_GAS_EMERGENCY_SERVICE_TEXTPHONE_NUMBER` -> The national gas emergency service *textphone (minicom)* number
 - `CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***during opening hours***
 - `OUT_OF_HOURS_CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***outside of opening hours***
 - `COUNCIL_WEBSITE_HOMEPAGE_URL` -> The local authority's website URL written **without** a `/` at the end e.g `www.example.com`
