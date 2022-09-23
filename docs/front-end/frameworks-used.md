@@ -122,6 +122,20 @@ Depending on what is given, it will display the opening hours information either
 
   which will display the information as a line of text in the frontend.
 
+## Feature Flags
+
+The following feature flag is set in next.config.js
+
+- `releaseVersion`
+
+This feature flag can be set to 
+- 'mvp' or
+- 'full'
+
+To denote which version of the application to build. This flag allows the introduction of version specific behaviour.
+
+For example, in the mvp version of the app, the repair description and image controls are on the same page. In the full version, they are in separate pages.
+
 ## Monitoring and alerting
 
 Sentry is used for monitoring and alerting.
