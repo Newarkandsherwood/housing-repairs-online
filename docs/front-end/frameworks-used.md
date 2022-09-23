@@ -49,7 +49,7 @@ The following variables are **required** by the front end to display specific lo
   
 #### Adding opening hours
 
-Opening hours can be added by either setting the `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` environment variable as a JSON object or as text.
+Opening hours can be added by setting the `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` environment variable to either a JSON object or as text.
 Depending on what is given, it will display the opening hours information either as a list or as text in a simple paragraph in the front end.
 
 ##### Usage
