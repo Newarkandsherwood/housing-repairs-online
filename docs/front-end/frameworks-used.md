@@ -45,15 +45,16 @@ The following variables are **required** by the front end to display specific lo
 - `CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***during opening hours***
 - `OUT_OF_HOURS_CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***outside of opening hours***
 - `COUNCIL_WEBSITE_HOMEPAGE_URL` -> The local authority's website URL written **without** a `/` at the end e.g `www.example.com`
+- `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` -> The customer service opening hours, can set as a JSON or text. See below.
   
 #### Adding opening hours
 
-Opening hours can be added as one of two configurable environment variables - `CUSTOMER_SERVICES_OPENING_TIMES_FULL_DESCRIPTION` and `CUSTOMER_SERVICES_OPENING_TIMES_SIMPLIFIED`.
->NOTE: Only one value needs to be set. If both are given, the code will always use the full description value.
+Opening hours can be added by either setting the `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` environment variable as a JSON object or as text.
+Depending on what is given, it will display the opening hours information either as a list or as text in a simple paragraph in the front end.
 
 ##### Usage
 
-- `CUSTOMER_SERVICES_OPENING_TIMES_FULL_DESCRIPTION`, complete description of the customer service opening times written in JSON format, this will be displayed as a list in the frontend.
+- If `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` is a JSON object
   
   Example:
 
@@ -61,7 +62,7 @@ Opening hours can be added as one of two configurable environment variables - `C
       {"Monday":"9am - 5pm", "Tuesday":"9am - 5pm", "Wednesday": "9am - 5pm", "Thursday": "9am - 5pm", "Friday": "9am - 5pm"}
     ```
 
-  will generate the following HTML in the frontend:
+  the code will generate the following HTML in the frontend:
 
     ```html
       <ul>
@@ -72,8 +73,12 @@ Opening hours can be added as one of two configurable environment variables - `C
         <li>Friday: 9am - 5pm</li>
       </ul>
   ```
+  
+  which will display the information as a list in the frontend.
 
-- `CUSTOMER_SERVICES_OPENING_TIMES_SIMPLIFIED`, simple description of the customer service opening times written as text.
+  **OR**
+
+- If `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` is simple text (i.e anything not in the JSON format)
 
   Example:
 
@@ -81,11 +86,13 @@ Opening hours can be added as one of two configurable environment variables - `C
       9am and 5pm, Monday to Friday
     ```
 
-  will generate the following HTML in the frontend:
+  the code will generate the following HTML in the frontend:
 
     ```html
       <p>9am and 5pm, Monday to Friday</p>
   ```
+
+  which will display the information as a line of text in the frontend.
 
 ## Monitoring and alerting
 
