@@ -22,37 +22,42 @@ Each next.js API endpoint is deployed as an Azure function.
 
 ## Environment variables
 
-The following environment variables need to be set in the Azure portal to enable
-the frontend app to make calls to be Repairs API
+### Add to Azure Portal
 
-- [`REPAIRS_API_BASE_URL`](../repairs-api/intro)
-- `REPAIRS_API_IDENTIFIER`
-- [`SENTRY_DSN`](../alerting-and-monitoring/intro#azure-component-setup)
+The following environment variables need to be **set in the Azure portal** to enable
+the frontend app to make calls to be Repairs API:
+  
+| Name                     | Description                                                                                                    |
+|--------------------------|----------------------------------------------------------------------------------------------------------------|
+| `REPAIRS_API_BASE_URL`   | URL of the Repairs API, [see docs](../repairs-api/intro).                                                      |
+| `REPAIRS_API_IDENTIFIER` | Unique authentication identifier for the accessing the API, [see docs](../repairs-api/intro).                  |
+| `SENTRY_DSN`             | The Sentry project Data Source Name (DSN), [see docs](../alerting-and-monitoring/intro#azure-component-setup). |
+
+### Add to GitHub Repository Secrets
+
+The following variables are required by the front end and should be setup as **GitHub secrets for the repository**:
+
+| Name                     | Description                                                                                                            |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `SENTRY_DSN`                                      | The Sentry project Data Source Name (DSN).                                                    |
+| `SENTRY_ORG`                                      | The organisation specified in Sentry.                                                         |
+| `SENTRY_AUTH_TOKEN`                               | Authentication token used for all communication with Sentry.                                  |
+| `CUSTOMER_SERVICES_TELEPHONE_NUMBER`              | The customer service number to contact ***during opening hours***.                            |
+| `OUT_OF_HOURS_CUSTOMER_SERVICES_TELEPHONE_NUMBER` | The customer service number to contact ***outside of opening hours***.                        |
+| `COUNCIL_WEBSITE_HOMEPAGE_URL`                    | The local authority's website URL written **without** a `/` at the end e.g `www.example.com`. |
+| `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION`     | The customer service opening hours, can set as a JSON or text. See below.                     |
 
 Any environment variable that needs to be used on the client side should be set
 at deployment time in the [`Build And Deploy` job](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/main/.github/workflows/azure-static-web-apps-purple-desert-05060ea03.yml#L100).
 
-The following variables are required by the front end and should be setup as GitHub secrets for the repository:
-
-- `SENTRY_DSN`, the Sentry project Data Source Name (DSN)
-- `SENTRY_ORG`, the organisation specified in Sentry
-- `SENTRY_AUTH_TOKEN`, authentication token used for all communication with Sentry
-  
-### Adding specific local authority/council details
-
-The following variables are **required** by the front end to display specific local authority details such as customer service contact numbers and should be **set up as GitHub secrets for the repository**:
-
-- `CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***during opening hours***
-- `OUT_OF_HOURS_CUSTOMER_SERVICES_TELEPHONE_NUMBER` -> The customer service number to contact ***outside of opening hours***
-- `COUNCIL_WEBSITE_HOMEPAGE_URL` -> The local authority's website URL written **without** a `/` at the end e.g `www.example.com`
-- `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` -> The customer service opening hours, can set as a JSON or text. See below.
-  
-#### Adding opening hours
+### Adding local authority customer services opening hours
 
 Opening hours can be added by setting the `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` environment variable to either a JSON object or as text.
 Depending on what is given, it will display the opening hours information either as a list or as text in a simple paragraph in the front end.
 
-##### Usage
+#### Usage
+
+##### As a JSON object
 
 - If `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` is a JSON object
   
@@ -76,7 +81,7 @@ Depending on what is given, it will display the opening hours information either
   
   which will display the information as a list in the frontend.
 
-  **OR**
+##### As a line of text (i.e not in JSON)
 
 - If `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION` is simple text (i.e anything not in the JSON format)
 
