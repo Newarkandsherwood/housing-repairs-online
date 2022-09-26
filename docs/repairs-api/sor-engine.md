@@ -55,6 +55,7 @@ The following describes the values to use for specific exit points:
 | Emergency               | An option selected is identified as an emergency                 |
 | UnableToBook            | An option which is not bookable via the service                  |
 | NotEligibleNonEmergency | An option for which the Local Authority _may_ not be responsible |
+| ContactUs               | An option that will require contacting the Local Authority       |
 
 
 When these options are selected, appropriate information is presented to the user.
@@ -136,6 +137,10 @@ The following example has:
           {
             "value": "UnableToBook",
             "display": "Don't like door colour"
+          },
+          {
+            "value": "ContactUs",
+            "display": "Door panel is broken"
           }
         ]
       }
