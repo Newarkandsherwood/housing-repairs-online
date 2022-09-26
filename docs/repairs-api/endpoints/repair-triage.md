@@ -19,6 +19,7 @@ Bearer Token `<token>`
 | emergencyValue           | emergency               | ✅       |
 | notEligibleNonEmergency  | notEligibleNonEmergency | ✅       |
 | unableToBook             | unableToBook            | ✅       |
+| contactUsValue           | contactUs               | ✅       |
 
 ### Response:
 
@@ -134,6 +135,10 @@ Repair triage options
           {
             "value": "unableToBook",
             "display": "Don't like door colour"
+          },
+          {
+            "value": "contactUs",
+            "display": "Door panel is broken"
           }
         ]
       }
