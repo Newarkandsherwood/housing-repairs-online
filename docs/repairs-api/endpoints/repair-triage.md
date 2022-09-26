@@ -14,12 +14,12 @@ Bearer Token `<token>`
 
 #### Query Params
 
-| Key                      | Example value           | Required |
-|--------------------------|-------------------------| -------- |
-| emergencyValue           | emergency               | ✅       |
-| notEligibleNonEmergency  | notEligibleNonEmergency | ✅       |
-| unableToBook             | unableToBook            | ✅       |
-| contactUsValue           | contactUs               | ✅       |
+| Key                           | Example value           | Required |
+|-------------------------------|-------------------------| -------- |
+| emergencyValue                | emergency               | ✅       |
+| notEligibleNonEmergencyValue  | notEligibleNonEmergency | ✅       |
+| unableToBookValue             | unableToBook            | ✅       |
+| contactUsValue                | contactUs               | ✅       |
 
 ### Response:
 
