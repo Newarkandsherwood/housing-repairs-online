@@ -40,15 +40,16 @@ The following variables are required by the front end and should be setup as Git
 
 ## Feature Flags
 
-The following feature flag is set in next.config.js
-
-- `releaseVersion`
+The following feature flag is set in the next root .env file: 
+- `RELEASE_VERSION`
 
 This feature flag can be set to 
 - 'mvp' or
-- 'full'
+- 'full'.
 
-To denote which version of the application to build. This flag allows the introduction of version specific behaviour.
+Any other value, including the absense of this variable will result in the application falling back on the 'full' version.
+
+The flag denotes which version of the application to build. This flag allows the introduction of version specific behaviour.
 
 For example, in the mvp version of the app, the repair description and image controls are on the same page. In the full version, they are in separate pages.
 
