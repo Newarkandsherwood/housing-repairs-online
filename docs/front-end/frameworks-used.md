@@ -131,11 +131,11 @@ This feature flag can be set to
 - 'mvp' or
 - 'full'.
 
-Any other value, including the absense of this variable will result in the application falling back on the 'full' version.
+Any other value, including the absence of this variable, will result in the application falling back on the 'full' version.
 
 The flag denotes which version of the application to build. This flag allows the introduction of version specific behaviour.
 
-For example, in the mvp version of the app, the repair description and image controls are on the same page. In the full version, they are in separate pages.
+For example, in the mvp version of the app, the repair description and the image controls are on the same page. In the full version, they are shown on separate pages.
 
 ## Monitoring and alerting
 
