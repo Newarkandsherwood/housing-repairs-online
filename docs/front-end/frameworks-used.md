@@ -46,6 +46,7 @@ The following variables are required by the front end and should be setup as **G
 | `SENTRY_ORG`                                      | The organisation specified in Sentry.                                                                                        |
 | `SENTRY_AUTH_TOKEN`                               | Authentication token used for all communication with Sentry.                                                                 |
 | `CUSTOMER_SERVICES_TELEPHONE_NUMBER`              | The customer service number to contact ***during opening hours***.                                                           |
+| `LOCAL_COUNCIL_FULL_NAME`                         | The full name of the local authority e.g `ABC Council`                                                                 |
 | `OUT_OF_HOURS_CUSTOMER_SERVICES_TELEPHONE_NUMBER` | The customer service number to contact ***outside of opening hours***.                                                       |
 | `COUNCIL_WEBSITE_HOMEPAGE_URL`                    | The local authority's website URL written **without** a `/` at the end e.g `www.example.com`. [See here](#adding-local-authority-web-links-ie-accessibility-statement-privacy-notice-contact-us). |
 | `PRIVACY_NOTICE_WEB_PAGE_PATH`                    | Resource path to the local authority's privacy notice **without** a `/` at the start. e.g `privacynotice`. [See here](#adding-local-authority-web-links-ie-accessibility-statement-privacy-notice-contact-us). |
