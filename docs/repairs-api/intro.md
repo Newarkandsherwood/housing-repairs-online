@@ -161,8 +161,62 @@ Email notification template ID is configured via [environment variables](#i-emai
 | DAYS_UNTIL_IMAGE_EXPIRY                                                   | Number of days attached images can be accessible for                                  |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
 | SOR_CONFIGURATION                                                         | Schedule of Rates configuration that specifies options to offer and their SoR code    |
+| ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
 
 \* See [Authentication](../apis/authentication) for more details.
+
+### Allowed Appointment Slots
+
+The value of `ALLOWED_APPOINTMENT_SLOTS` should be in JSON format and be an array of objects with `startTime` and `endTime` defined, i.e.
+
+```
+[
+  {
+    "startTime": "08:00:00",
+    "endTime": "12:00:00"
+  },
+  {
+    "startTime": "12:00:00",
+    "endTime": "18:00:00"
+  },
+  {
+    "startTime": "09:30:00",
+    "endTime": "14:30:00"
+  }
+]
+```
+
+Both `startTime` and `endTime` are mandatory.  
+The value of `ALLOWED_APPOINTMENT_SLOTS` will be validated on startup.
+If it is found to be invalid (e.g. malformed JSON or missing `startTime` and/or `endTime`) the API will not start successfully.
+
+The following is a JSON schema for the allowed appointment slots data structure:
+```
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "appointmentSlotTimeSpan": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "startTime",
+        "endTime"
+      ]
+    }
+  },
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/appointmentSlotTimeSpan"
+  }
+}
+```
 
 ## Health Checks
 
