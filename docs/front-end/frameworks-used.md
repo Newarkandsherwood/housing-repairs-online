@@ -118,7 +118,7 @@ Depending on what is given, it will display the opening hours information either
 
     ```html
       <p>9am to 5pm, Monday to Friday</p>
-  ```
+    ```
 
   which will display the information as a line of text in the frontend.
 
