@@ -20,6 +20,26 @@ Bearer Token `<token>`
 | locationId | 333333               | ✅       |
 | fromDate   | 2022-03-09T08:00:00Z |          |
 
+#### Body
+The *optional* body should be a list of allowed appointment slots, with a `startTime` and `endTime` in JSON format, i.e,
+```json
+[
+    {
+        "startTime": "08:00:00",
+        "endTime": "12:00:00"
+    },
+    {
+        "startTime": "12:00:00",
+        "endTime": "16:00:00"
+    },
+    {
+        "startTime": "08:00:00",
+        "endTime": "16:00:00"
+    }
+]
+```
+
+If no body is present in the request, all available appointment slots will be returned.
 
 ### Response:
 
