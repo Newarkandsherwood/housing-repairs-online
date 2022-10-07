@@ -60,6 +60,8 @@ Create the following resouces in Azure:
 
 - Create Azure Static Web App
   - A deployment token will need to be added to the repository secrets[^1]
+- (Optional) Add a custom domain to the Azure Static Web App
+  - A custom domain name will be needed and its value added to the repository secrets[^2]
 
 ## Deploying to Azure
 
@@ -94,9 +96,6 @@ Once you have added a remote backend to your Terraform and created a service pri
       | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                              |
       | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                 |
       | `STATIC_SITE_NAME`       | The name of your static site                                                                                   |
-      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you want to attach to your static site.                                                 |
-
-      Read the [Azure guidance](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain) and [Terraform guidance](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/static_site_custom_domain) for more information on how custom domain names are added to static web apps in Azure.
 
   2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
@@ -116,6 +115,21 @@ Once the App has been deployed, and all the API's have been deployed, navigate t
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | `REPAIRS_API_BASE_URL`   | Housing repairs online API URL, this can obtained from the App Service the API was deployed to |
 | `REPAIRS_API_IDENTIFIER` | A unique identifier used to validate access in production                                      |
+
+#### Notes: Adding a custom domain
+
+1. If a custom domain is **NOT** ready for your site, you can comment out/remove the `azurerm_static_site_custom_domain` resource from your terraform file.
+2. If a custom domain name is ready for your site, add the value to a Github secret called `CUSTOM_DOMAIN_NAME` , make sure you have the `azurerm_static_site_custom_domain` resource in your terraform file and reference your custom domain value within the terraform resource e.g.
+
+  ```json
+  resource "azurerm_static_site_custom_domain" "hrostaticwebapp" {
+    static_site_id  = azurerm_static_site.hrostaticwebapp.id
+    domain_name     = var.custom_domain_name
+    validation_type = "cname-delegation"
+  }
+  ```
+
+Read the [Azure guidance](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain) and [Terraform guidance](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/static_site_custom_domain) for more information on how custom domain names are added to static web apps in Azure.
 
 ## Deploying the API's
 
@@ -287,3 +301,4 @@ After the [housing-repairs-online](https://github.com/City-of-Lincoln-Council/ho
 - Configure the repository by adding a Deploy Key and `ACTIONS_DEPLOY_KEY` Secret ([see here](https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-create-ssh-deploy-key))
 
 [^1]: When creating resource in Azure, if using Github integration, some of these secrets will be automatically added to the repository.
+[^2]: To add a custom domain to the Azure static web app, add the name as a Github secrets repository and make sure the `azurerm_static_site_custom_domain` terraform resource is in your configuration. If not ready, this value does not need to be given and the `azurerm_static_site_custom_domain` terraform resource can be removed or commented out.
