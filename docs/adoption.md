@@ -87,13 +87,16 @@ Once you have added a remote backend to your Terraform and created a service pri
 
   1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-      | Secret name              | Value                                                                                                         |
-      | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
-      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service |
-      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                           |
-      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                             |
-      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                |
-      | `STATIC_SITE_NAME`       | The name of your static site                                                                                  |
+      | Secret name              | Value                                                                                                          |
+      | ------------------------ | ---------------------------------------------------------------------------------------------------------------|
+      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service. |
+      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                            |
+      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                              |
+      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                 |
+      | `STATIC_SITE_NAME`       | The name of your static site                                                                                   |
+      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you want to attach to your static site.                                                 |
+
+      Read the [Azure guidance](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain) and [Terraform guidance](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/static_site_custom_domain) for more information on how custom domain names are added to static web apps in Azure.
 
   2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
