@@ -60,8 +60,8 @@ Create the following resouces in Azure:
 
 - Create Azure Static Web App
   - A deployment token will need to be added to the repository secrets[^1]
-- (Optional) Add a custom domain to the Azure Static Web App
-  - A custom domain name will be needed and its value added to the repository secrets[^2]
+- **(Optional)** Add a custom domain to the Azure Static Web App[^2]
+  - e.g. `repairs.abc_council.test.uk`
 
 ## Deploying to Azure
 
@@ -89,13 +89,14 @@ Once you have added a remote backend to your Terraform and created a service pri
 
   1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-      | Secret name              | Value                                                                                                          |
-      | ------------------------ | ---------------------------------------------------------------------------------------------------------------|
-      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service. |
-      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                            |
-      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                              |
-      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                 |
-      | `STATIC_SITE_NAME`       | The name of your static site                                                                                   |
+      | Secret name              | Value                                                                                                                 | Mandatory? |
+      | ------------------------ | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service.        | YES        |
+      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                                   | YES        |
+      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                                     | YES        |
+      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                        | YES        |
+      | `STATIC_SITE_NAME`       | The name of your static site                                                                                          | YES        |
+      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you wish to attach to your static site. See [below](adoption.md#notes-adding-a-custom-domain). | NO         |
 
   2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
@@ -116,18 +117,13 @@ Once the App has been deployed, and all the API's have been deployed, navigate t
 | `REPAIRS_API_BASE_URL`   | Housing repairs online API URL, this can obtained from the App Service the API was deployed to |
 | `REPAIRS_API_IDENTIFIER` | A unique identifier used to validate access in production                                      |
 
-#### Notes: Adding a custom domain
+#### Notes: Adding a custom domain (Optional)
 
-1. If a custom domain is **NOT** ready for your site, you can comment out/remove the `azurerm_static_site_custom_domain` resource from your terraform file.
-2. If a custom domain name is ready for your site, add the value to a Github secret called `CUSTOM_DOMAIN_NAME` , make sure you have the `azurerm_static_site_custom_domain` resource in your terraform file and reference your custom domain value within the terraform resource e.g.
+When creating a static web app, Azure will automatically auto-generate a domain name for the website but if you have a custom domain ready for your site, add the value to the Github secret called `CUSTOM_DOMAIN_NAME` and this will map a your custom domain to the site.
 
-  ```json
-  resource "azurerm_static_site_custom_domain" "hrostaticwebapp" {
-    static_site_id  = azurerm_static_site.hrostaticwebapp.id
-    domain_name     = var.custom_domain_name
-    validation_type = "cname-delegation"
-  }
-  ```
+When a value for `CUSTOM_DOMAIN_NAME` is given, terraform will create the `azurerm_static_site_custom_domain` resource using the given value and attach it to the static web app.
+
+If you have not given a custom domain, the custom domain resource will not be added.
 
 Read the [Azure guidance](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain) and [Terraform guidance](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/static_site_custom_domain) for more information on how custom domain names are added to static web apps in Azure.
 
@@ -158,13 +154,11 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `RESOURCE_GROUP_NAME`                  | The resource group name housing your Terraform state file                                                         |
 | `STORAGE_ACCOUNT_NAME`                 | The name of the Azure Storage Account to house your Terraform state file                                          |
 | `STATE_CONTAINER_NAME`                 | The name of the Azure Blob Storage container to house your Terraform state file                                   |
-| `STATE_KEY_NAME`                       | The file path and name of your Terraform state file                                                             
+| `STATE_KEY_NAME`                       | The file path and name of your Terraform state file
 | `COSMOS_DATABASE_ID`                   | DocumentDB (e.g. CosmosDB) database name |
 | `COSMOS_TENANT_CONTAINER_ID`           | DocumentDB (e.g. CosmosDB) container name for tenant addresses, e.g. `addresses` |
 | `COSMOS_ENDPOINT_URL`                  | DocumentDB (e.g. CosmosDB) account endpoint URL |
 | `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key |
-
-
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
@@ -225,7 +219,7 @@ Populate github secrets with the following values so that we can add the use the
 | `COSMOS_CONTAINER_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) container name for _Staging_, e.g. `housing-repairs-online-staging`  |
 | `COSMOS_ACCOUNT_PRIMARY_KEY`        | DocumentDB (e.g. CosmosDB) account primary key |
 | `COSMOS_DATABASE_NAME_PRODUCTION`        | DocumentDB (e.g. CosmosDB) database name for _Production_, e.g. `housing-repairs-production` |
-| `COSMOS_DATABASE_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) database name for _Staging_, e.g. `housing-repairs-staging`  | 
+| `COSMOS_DATABASE_NAME_STAGING`        | DocumentDB (e.g. CosmosDB) database name for _Staging_, e.g. `housing-repairs-staging`  |
 | `COSMOS_ACCOUNT_ENDPOINT`        | DocumentDB (e.g. CosmosDB) account endpoint URL |
 | `STORAGE_ACCOUNT_PRIMARY_CONNECTION_STRING`        | Storage account primary connection string |
 
@@ -301,4 +295,4 @@ After the [housing-repairs-online](https://github.com/City-of-Lincoln-Council/ho
 - Configure the repository by adding a Deploy Key and `ACTIONS_DEPLOY_KEY` Secret ([see here](https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-create-ssh-deploy-key))
 
 [^1]: When creating resource in Azure, if using Github integration, some of these secrets will be automatically added to the repository.
-[^2]: To add a custom domain to the Azure static web app, add the name as a Github secrets repository and make sure the `azurerm_static_site_custom_domain` terraform resource is in your configuration. If not ready, this value does not need to be given and the `azurerm_static_site_custom_domain` terraform resource can be removed or commented out.
+[^2]: If you are not ready to add a custom domain, the site will continue to use the auto generated Azure domain. Add the custom domain when this is ready and it will be mapped to the site.
