@@ -53,7 +53,7 @@ The following variables are required by the front end and should be setup as **G
 | `ACCESSIBILITY_STATEMENT_WEB_PAGE_PATH`           | Resource path to the local authority's accessibility statement **without** a `/` at the start. e.g `accessibility-statement` . [See here](#adding-local-authority-web-links-ie-accessibility-statement-privacy-notice-contact-us). |
 | `CONTACT_US_PAGE_PATH`                            | Resource path to the local authority's contact details **without** a `/` at the start. e.g `contact`. [See here](#adding-local-authority-web-links-ie-accessibility-statement-privacy-notice-contact-us). |
 | `CUSTOMER_SERVICES_OPENING_HOURS_DESCRIPTION`     | The customer service opening hours, can set as a JSON or text. [See here](#adding-local-authority-customer-services-opening-hours). |
-| `CUSTOM_DOMAIN_NAME`                              | The custom domain name you want to attach to your static site. **Provide a value for this when your custom domain name is ready.** See [here](../adoption.md#notes-adding-a-custom-domain) for more information|
+| `CUSTOM_DOMAIN_NAME`                              | **OPTIONAL:** The custom domain name you wish to attach to your static site. See [here](../adoption.md#notes-adding-a-custom-domain) for more details   |
 
 ### Adding local authority web links (i.e. Accessibility Statement, Privacy Notice, Contact Us)
 
@@ -125,10 +125,12 @@ Depending on what is given, it will display the opening hours information either
 
 ## Feature Flags
 
-The following feature flag is set in the next root .env file: 
+The following feature flag is set in the next root .env file:
+
 - `RELEASE_VERSION`
 
-This feature flag can be set to 
+This feature flag can be set to
+
 - 'mvp' or
 - 'full'.
 
