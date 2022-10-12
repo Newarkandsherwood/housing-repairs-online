@@ -210,7 +210,7 @@ A minimal `createOrder` request requires the following fields (in order of appea
 |      `contract` | Alphanumeric | ID of contract to use for the search. | Lincoln’s contract value is zero (0) | ✅ |
 |      `locationId` | Alphanumeric | ID of the location as stored within DRS | ✅ |
 |      `message` | Boolean (true/false) | Flag to indicate if an SMS should be sent |
-|      `orderComments` | Alphanumeric | Comments to add to the order. | Required field, but a single space character can be provided (which would be removed/trimmed). Maximum 255 characters | ✅ |
+|      `orderComments` | Alphanumeric | Comments to add to the order. | Required field, but a single space character can be provided (which would be removed/trimmed). Maximum 255 characters, minimum character length of 1 | ✅ |
 |      `orderId` | Numeric | Zero (0) should be used to create an new order Id
 |      `primaryOrderNumber` | Alphanumeric  | The ID of the order within the Housing Management System. | ✅ |
 |      `priority` | Alphanumeric  | A value matching the possible priorities with DRS | ✅ |
