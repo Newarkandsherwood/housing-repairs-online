@@ -96,7 +96,7 @@ Once you have added a remote backend to your Terraform and created a service pri
       | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                                     | YES        |
       | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                        | YES        |
       | `STATIC_SITE_NAME`       | The name of your static site                                                                                          | YES        |
-      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you wish to attach to your static site. See [below](adoption.md#notes-adding-a-custom-domain). | NO         |
+      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you wish to attach to your static site. See [below](adoption.md#notes-adding-a-custom-domain-optional). | NO         |
 
   2. You will then reference these as environment variables in your github actions workflow. There will be an example provided further down which you can replicate. This allows the setup-terraform action to use the service principal credentials to provision your resources.
 
