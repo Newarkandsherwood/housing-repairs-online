@@ -18,6 +18,7 @@ Bearer Token `<token>`
 {
     "bookingReference": "A2B3C4",
     "sorCode": "123ABC",
+    "priority": "priority 2",
     "locationId": "333333",
     "startDateTime": "2022-03-15T12:00:00Z",
     "endDateTime": "2022-03-15T16:00:00Z"

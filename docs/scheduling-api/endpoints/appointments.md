@@ -17,6 +17,7 @@ Bearer Token `<token>`
 | Key        | Example value        | Required |
 |------------|----------------------| -------- |
 | sorCode    | 123ABC               | ✅       |
+| priority   | priority 2           | ✅       |
 | locationId | 333333               | ✅       |
 | fromDate   | 2022-03-09T08:00:00Z |          |
 
