@@ -17,7 +17,7 @@ For example, a repair of a kitchen cupboard door hanging off, local authority 1 
 
 Due to this difference, the SoR engine was created to allow each local authority to be able to use the specific SoR code they would prefer for each online reportable repair.
 
-The SoR Engine offers a 3-tiered mapping of where, what and best description of the issue to a SoR code.
+The SoR Engine offers a 3-tiered mapping of where, what and best description of the issue to a SoR code and priority.
 
 Here is an example of the values possible at the 3 tiers:
 
@@ -40,7 +40,7 @@ All journey's must have a minimum of 2 tiers and some do not have 3 tier's, e.g.
 ### Configuration
 The SoR engine is configured by specifying the `SOR_CONFIGURATION` environment variable.
 
-The configuration allows specifying the key value, display text and either options (used to gather additional information) or a SoR code.
+The configuration allows specifying the key value, display text and either options (used to gather additional information) or a SoR code and priority.
 
 The `SOR_CONFIGURATION` value is used to determine which options to offer at each tier (where, what and best description) and a SoR code for the combination of options.  
 The display text is shown to the user within the frontend.  
@@ -78,19 +78,22 @@ The following example has:
           {
             "value": "doorHangingOff",
             "display": "Hanging Door",
-            "sorCode": "N373049"
+            "sorCode": "N373049",
+            "priority": "priority 2"
           },
           {
             "value": "doorMissing",
             "display": "Missing door",
-            "sorCode": "N373049"
+            "sorCode": "N373049",
+            "priority": "priority 2"
           }
         ]
       },
       {
         "value": "worktop",
         "display": "Damaged worktop",
-        "sorCode": "N372005"
+        "sorCode": "N372005",
+        "priority": "priority 3"
       },
       {
         "value": "UnableToBook",
@@ -107,7 +110,8 @@ The following example has:
           {
             "value": "dampOrMould",
             "display": "Damp or mould caused by something else",
-            "sorCode": "N114001"
+            "sorCode": "N114001",
+            "priority": "priority 2"
           }
         ]
       }
@@ -124,7 +128,8 @@ The following example has:
           {
             "value": "internalDoorIssue",
             "display": "Internal door issue, including hinges, handle, sticking",
-            "sorCode": "N330007"
+            "sorCode": "N330007",
+            "priority": "priority 3"
           },
           {
             "value": "NotEligibleNonEmergency",
