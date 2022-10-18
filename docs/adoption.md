@@ -112,11 +112,12 @@ Note: _There will be some future work to prevent the manual entry of the AZURE S
 
 Once the App has been deployed, and all the API's have been deployed, navigate to the static web app, under settings, select configuration. Add the environment variables below.
 
-| Secret name              | Description                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `REPAIRS_API_BASE_URL`   | Housing repairs online API URL, this can obtained from the App Service the API was deployed to |
-| `REPAIRS_API_IDENTIFIER` | A unique identifier used to validate access in production                                      |
-
+| Secret name                      | Description                                                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `REPAIRS_API_BASE_URL`           | Housing repairs online API URL, this can obtained from the App Service the API was deployed to         |
+| `REPAIRS_API_IDENTIFIER`         | A unique identifier used to validate access in production                                              |
+| `REPAIRS_API_BASE_URL_STAGING`   | Housing repairs online API Staging URL, this can obtained from the App Service the API was deployed to |
+| `REPAIRS_API_IDENTIFIER_STAGING` | A unique identifier used to validate access in staging                                                 |
 #### Notes: Adding a custom domain (Optional)
 
 When creating a static web app, Azure will automatically auto-generate a domain name for the website but if you have a custom domain ready for your site, add the value to the Github secret called `CUSTOM_DOMAIN_NAME` and this will map a your custom domain to the site.
