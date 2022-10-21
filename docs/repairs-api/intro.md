@@ -160,7 +160,8 @@ Email notification template ID is configured via [environment variables](#i-emai
 | <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                  |
 | DAYS_UNTIL_IMAGE_EXPIRY                                                   | Number of days attached images can be accessible for                                  |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
-| SOR_CONFIGURATION                                                         | [Schedule of Rates configuration](sor-engine/#configuration) that specifies options to offer and their SoR code    |
+| SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code    |
+| SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
 | ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
 
 \* See [Authentication](../apis/authentication) for more details.
