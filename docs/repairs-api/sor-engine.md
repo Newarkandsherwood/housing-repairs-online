@@ -38,7 +38,7 @@ All journey's must have a minimum of 2 tiers and some do not have 3 tier's, e.g.
 :::
 
 ### Configuration
-The SoR engine is configured by specifying the `SOR_CONFIGURATION_XXX` environment variables, where `XXX` is replaced with a repair types, i.e. `TENANT` or `COMMUNAL`.
+The SoR engine is configured by specifying the `SOR_CONFIGURATION_XXX` environment variables, where `XXX` is replaced with a repair types, i.e. `TENANT`, `LEASEHOLD` or `COMMUNAL`.
 
 The configuration allows specifying the key value, display text and either options (used to gather additional information) or a SoR code and priority.
 
