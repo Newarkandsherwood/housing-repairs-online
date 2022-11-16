@@ -89,18 +89,18 @@ Once you have added a remote backend to your Terraform and created a service pri
 
   1. Add the following secrets as your github repository secrets, these are only available to you if you have access to create a service principal so ensure to request these if the service principal is being created for you, (Note: navigate to your Service principal under Active Directory → App registrations → select your app registration and navigate to overview):
 
-      | Secret name              | Value                                                                                                                 | Mandatory? |
-      | ------------------------ | --------------------------------------------------------------------------------------------------------------------- | ---------- |
-      | `AZURE_AD_CLIENT_SECRET` | This is the client secret value that was generated for the service principal in section 4 of Create a service.        | YES        |
-      | `AZURE_AD_CLIENT_ID`     | This is the Application (client) ID                                                                                   | YES        |
-      | `AZURE_AD_TENANT_ID`     | This is the Directory (tenant) ID                                                                                     | YES        |
-      | `AZURE_SUBSCRIPTION_ID`  | Navigate to subscriptions and select the Subscription ID for your subscription                                        | YES        |
-      | `STATIC_SITE_NAME`       | The name of your static site                                                                                          | YES        |
-      | `CUSTOM_DOMAIN_NAME`     | The custom domain name you wish to attach to your static site. See [below](adoption.md#notes-adding-a-custom-domain-optional). | NO         |
-      | `REPAIRS_API_BASE_URL`           | Housing repairs online API URL, this can obtained from the App Service the API was deployed to           | YES     |
-       `REPAIRS_API_IDENTIFIER`         | A unique identifier used to validate access in production                                              | YES |
-     | `REPAIRS_API_BASE_URL_STAGING`           | Housing repairs online API Staging URL, this can obtained from the App Service the API was deployed to           | YES     |
-       `REPAIRS_API_IDENTIFIER_STAGING`         | A unique identifier used to validate access in staging                                              | YES | 
+      | Secret name              | Value                                                                                                                                | Mandatory? |
+      | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------| ---------- |
+      | `AZURE_AD_CLIENT_SECRET`        | This is the client secret value that was generated for the service principal in section 4 of Create a service.                | YES        |
+      | `AZURE_AD_CLIENT_ID`            | This is the Application (client) ID                                                                                           | YES        |
+      | `AZURE_AD_TENANT_ID`            | This is the Directory (tenant) ID                                                                                             | YES        |
+      | `AZURE_SUBSCRIPTION_ID`         | Navigate to subscriptions and select the Subscription ID for your subscription                                                | YES        |
+      | `STATIC_SITE_NAME`              | The name of your static site                                                                                                  | YES        |
+      | `CUSTOM_DOMAIN_NAME`            | The custom domain name you wish to attach to your static site. See [below](adoption.md#notes-adding-a-custom-domain-optional).| NO         |
+      | `REPAIRS_API_BASE_URL`          | Housing repairs online API URL, this can obtained from the App Service the API was deployed to                                | YES        |
+      | `REPAIRS_API_IDENTIFIER`        | A unique identifier used to validate access in production                                                                     | YES        |
+      | `REPAIRS_API_BASE_URL_STAGING`  | Housing repairs online API Staging URL, this can obtained from the App Service the API was deployed to                        | YES        |
+      | `REPAIRS_API_IDENTIFIER_STAGING`| A unique identifier used to validate access in staging                                                                        | YES        | 
         
        
 
