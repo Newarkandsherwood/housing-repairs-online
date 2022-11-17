@@ -225,34 +225,40 @@ Populate github secrets with the following values so that we can add the use the
 
 To deploy the housing repairs api, you must first deploy `HousingRepairsSchedulingApi` and `HousingManagementSystemApi`. Once this has been deployed, populate github actions with the following secrets:
 
-| Secret name                             | Description                                                                                                   |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `ADDRESSES_API_URL_PRODUCTION`          | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
-| `ADDRESSES_API_URL_STAGING`             | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
-| `SCHEDULING_API_URL_PRODUCTION`         | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
-| `SCHEDULING_API_URL_STAGING`            | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
-| `AUTHENTICATION_IDENTIFIER_PRODUCTION`  | A unique identifier used to validate access for _Production_                                                  |
-| `AUTHENTICATION_IDENTIFIER_STAGING`     | A unique identifier used to validate access for _Staging_                                                     |
-| `CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID, this is available once the template is created                                  |
-| `CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID, this is available once the template is created                                    |
-| `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`    | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
-| `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`       | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
-| `GOV_NOTIFY_KEY_PRODUCTION`             | _Staging_ gov notify key                                                                                      |
-| `GOV_NOTIFY_KEY_STAGING`                | _Production_ gov notify key                                                                                   |
-| `INTERNAL_EMAIL_PRODUCTION`             | Internal email address for receiving repair request details, for any manual follow-on process in _Production_ |
-| `INTERNAL_EMAIL_STAGING`                | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_    |
-| `INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID, this is available once the template is created                         |
-| `JWT_SECRET_PRODUCTION`                 | JWT secret generated for for _Production_                                                                     |
-| `JWT_SECRET_STAGING`                    | JWT secret generated for for _Staging_                                                                        |
-| `NUGET_AUTH_GITHUB_TOKEN`               | Authentication token for authenticating with GitHub NuGet feed                                                |
-| `NUGET_AUTH_GITHUB_USERNAME`            | Username for authenticating with GitHub NuGet feed                                                            |
-| `SENTRY_DSN`                            | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                        |
-| `SERVICE_NAME`                          | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`  |
-| `SOR_CONFIG_PRODUCTION`                 | SOR codes in JSON format for _Production_                                                                     |
-| `SOR_CONFIG_STAGING`                    | SOR codes in JSON format for _Staging_                                                                        |
-| `STATE_KEY_NAME`                        | The file path and name of your Terraform state file                                                           |
-| `STORAGE_CONTAINER_NAME_PRODUCTION`     | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
-| `STORAGE_CONTAINER_NAME_STAGING`        | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
+| Secret name                                       | Description                                                                                                   |
+| ---------------------------------------           | ------------------------------------------------------------------------------------------------------------- |
+| `ADDRESSES_API_URL_PRODUCTION`                    | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
+| `ADDRESSES_API_URL_STAGING`                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
+| `SCHEDULING_API_URL_PRODUCTION`                   | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
+| `SCHEDULING_API_URL_STAGING`                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
+| `AUTHENTICATION_IDENTIFIER_PRODUCTION`            | A unique identifier used to validate access for _Production_                                                  |
+| `AUTHENTICATION_IDENTIFIER_STAGING`               | A unique identifier used to validate access for _Staging_                                                     |
+| `TENANT_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID`    | Gov notify email template ID for tenant repairs, this is available once the template is created               |
+| `TENANT_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`      | Gov notify sms template ID for tenant repairs, this is available once the template is created                 |
+| `TENANT_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`        | Gov notify internal email template ID for tenant repairs, this is available once the template is created      |
+| `COMMUNAL_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID`  | Gov notify email template ID for communal repairs, this is available once the template is created             |
+| `COMMUNAL_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`    | Gov notify sms template ID for communal repairs, this is available once the template is created               |
+| `COMMUNAL_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`      | Gov notify internal email template ID for communal repairs, this is available once the template is created    |
+| `LEASEHOLD_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID for leasehold repairs, this is available once the template is created            |
+| `LEASEHOLD_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID for leasehold repairs, this is available once the template is created              |
+| `LEASEHOLD_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID for leasehold repairs, this is available once the template is created   |
+| `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
+| `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
+| `GOV_NOTIFY_KEY_PRODUCTION`                       | _Staging_ gov notify key                                                                                      |
+| `GOV_NOTIFY_KEY_STAGING`                          | _Production_ gov notify key                                                                                   |
+| `INTERNAL_EMAIL_PRODUCTION`                       | Internal email address for receiving repair request details, for any manual follow-on process in _Production_ |
+| `INTERNAL_EMAIL_STAGING`                          | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_    |
+| `JWT_SECRET_PRODUCTION`                           | JWT secret generated for for _Production_                                                                     |
+| `JWT_SECRET_STAGING`                              | JWT secret generated for for _Staging_                                                                        |
+| `NUGET_AUTH_GITHUB_TOKEN`                         | Authentication token for authenticating with GitHub NuGet feed                                                |
+| `NUGET_AUTH_GITHUB_USERNAME`                      | Username for authenticating with GitHub NuGet feed                                                            |
+| `SENTRY_DSN`                                      | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                        |
+| `SERVICE_NAME`                                    | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`  |
+| `SOR_CONFIG_PRODUCTION`                           | SOR codes in JSON format for _Production_                                                                     |
+| `SOR_CONFIG_STAGING`                              | SOR codes in JSON format for _Staging_                                                                        |
+| `STATE_KEY_NAME`                                  | The file path and name of your Terraform state file                                                           |
+| `STORAGE_CONTAINER_NAME_PRODUCTION`               | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
+| `STORAGE_CONTAINER_NAME_STAGING`                  | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
