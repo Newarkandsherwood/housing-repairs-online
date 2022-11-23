@@ -143,22 +143,34 @@ Email notification template ID is configured via [environment variables](#i-emai
 ## Environment variables
 | Name                                                                      |  Description                                                                          |
 |---------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| AUTHENTICATION_IDENTIFIER                                                 | A unique identifier used to validate access.*                                         |
-| JWT_SECRET                                                                | A hash secret used for encryption.*                                                   |
-| [ADDRESSES_API_URL](../housing-management-system-api/intro)            | Address API URL                                                                       |
-| [SCHEDULING_API_URL](../scheduling-api/intro)                          | Scheduling API URL                                                                    |
-| <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                   |
-| COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                              |
-| COSMOS_DATABASE_ID                                                        | Cosmos database name, e.g.: `housing-repairs-online`                                  |
-| COSMOS_CONTAINER_ID                                                       | Cosmos table name, e.g.: `repairs-requests`                                           |
-| <span id="blob-env">AZURE_STORAGE_CONNECTION_STRING</span>                | Blob storage connection string                                                        |
-| STORAGE_CONTAINER_NAME                                                    | Blob storage container name, e.g.: `housing-repairs-online`                           |
-| GOV_NOTIFY_KEY                                                            | Gov notification key                                                                  |
-| <span id="n-sms-env">CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID</span>           | Id of the SMS template that will be sent to customers                                 |
-| <span id="n-email-env">CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID</span>       | Id of the email template that will be sent to customers                               |
-| <span id="i-email-env">INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID</span>           | Id of the template that will be sent to staff                                         |
-| <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                  |
-| DAYS_UNTIL_IMAGE_EXPIRY                                                   | Number of days attached images can be accessible for                                  |
+| AUTHENTICATION_IDENTIFIER_PRODUCTION            | A unique identifier used to validate access for _Production_                                                  |
+| AUTHENTICATION_IDENTIFIER_STAGING               | A unique identifier used to validate access for _Staging_                                                     |
+| JWT_SECRET_PRODUCTION                           | JWT secret generated for for _Production_                                                                     |
+| JWT_SECRET_STAGING                              | JWT secret generated for for _Staging_                                                                        |
+| ADDRESSES_API_URL_PRODUCTION                    | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
+| ADDRESSES_API_URL_STAGING                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
+| SCHEDULING_API_URL_PRODUCTION                   | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
+| SCHEDULING_API_URL_STAGING                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
+| <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                 |
+| COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                            |
+| COSMOS_DATABASE_ID                                                        | Cosmos database name, e.g.: `housing-repairs-online`                                |
+| COSMOS_CONTAINER_ID                                                       | Cosmos table name, e.g.: `repairs-requests`                                         |
+| <span id="blob-env">AZURE_STORAGE_CONNECTION_STRING</span>                | Blob storage connection string                                                      |
+| STORAGE_CONTAINER_NAME_PRODUCTION               | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
+| STORAGE_CONTAINER_NAME_STAGING                  | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
+| GOV_NOTIFY_KEY                                                            | Gov notification key                                                                |
+| TENANT_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID    | Gov notify email template ID for tenant repairs, this is available once the template is created               |
+| TENANT_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID      | Gov notify sms template ID for tenant repairs, this is available once the template is created                 |
+| TENANT_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID        | Gov notify internal email template ID for tenant repairs, this is available once the template is created      |
+| COMMUNAL_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID  | Gov notify email template ID for communal repairs, this is available once the template is created             |
+| COMMUNAL_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID    | Gov notify sms template ID for communal repairs, this is available once the template is created               |
+| COMMUNAL_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID      | Gov notify internal email template ID for communal repairs, this is available once the template is created    |
+| LEASEHOLD_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID | Gov notify email template ID for leasehold repairs, this is available once the template is created            |
+| LEASEHOLD_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID   | Gov notify sms template ID for leasehold repairs, this is available once the template is created              |
+| LEASEHOLD_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID     | Gov notify internal email template ID for leasehold repairs, this is available once the template is created   |
+| <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                |
+| DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
+| DAYS_UNTIL_IMAGE_EXPIRY_STAGING                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
 | SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code    |
 | SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
