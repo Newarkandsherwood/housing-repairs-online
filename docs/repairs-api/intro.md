@@ -164,6 +164,8 @@ Email notification template ID is configured via [environment variables](#i-emai
 | SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
 | SOR_CONFIGURATION_LEASEHOLD                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code    |
 | ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
+| REPAIR_DAYS_MAPPING_PRODUCTION                                            | Specifies the priority to repair days mapping for production (see [below](#repair-days-mapping) for details) |
+| REPAIR_DAYS_MAPPING_STAGING                                               | Specifies the priority to repair days mapping for staging (see [below](#repair-days-mapping) for details) |
 
 \* See [Authentication](../apis/authentication) for more details.
 
@@ -218,6 +220,24 @@ The following is a JSON schema for the allowed appointment slots data structure:
     "$ref": "#/definitions/appointmentSlotTimeSpan"
   }
 }
+```
+
+### Repair days Mapping
+This configuration is for the mapping between a repair's priority and the number of days in which it is expected to be completed. This mapping is used when reporting back to the user how long a repair is expected to take.
+
+The values of `REPAIR_DAYS_MAPPING_PRODUCTION` and `REPAIR_DAYS_MAPPING_PRODUCTION`should be in JSON format and be an array of objects with `Priority` and `NumberOfDays` defined, i.e.
+
+```
+[
+   {
+      "Priority":"2",
+      "NumberOfDays":"30"
+   },
+   {
+      "Priority":"3",
+      "NumberOfDays":"130"
+   }
+]
 ```
 
 ## Health Checks
