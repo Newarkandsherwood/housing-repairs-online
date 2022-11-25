@@ -259,6 +259,8 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STATE_KEY_NAME`                                  | The file path and name of your Terraform state file                                                           |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`               | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
 | `STORAGE_CONTAINER_NAME_STAGING`                  | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
+| `REPAIR_DAYS_MAPPING_PRODUCTION`                  | Repair days mapping for communal repairs for _Staging_.                                                       |
+| `REPAIR_DAYS_MAPPING_STAGING`                     Repair days mapping for communal repairs for _Prodution_.                                                       |
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 
