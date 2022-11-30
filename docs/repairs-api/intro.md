@@ -162,10 +162,10 @@ Email notification template ID is configured via [environment variables](#i-emai
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
 | SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code    |
 | SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
-| SOR_CONFIGURATION_LEASEHOLD                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code    |
+| SOR_CONFIGURATION_LEASEHOLD                                               | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code    |
 | ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
-| REPAIR_DAYS_MAPPING_PRODUCTION                                            | Specifies the priority to repair days mapping for production (see [below](#repair-days-mapping) for details) |
-| REPAIR_DAYS_MAPPING_STAGING                                               | Specifies the priority to repair days mapping for staging (see [below](#repair-days-mapping) for details) |
+| REPAIR_PRIORITY_TO_DAYS_PRODUCTION                                        | Specifies the priority to repair days mapping for production (see [below](#repair-days-mapping) for details) |
+| REPAIR_PRIORITY_TO_DAYS_STAGING                                           | Specifies the priority to repair days mapping for staging (see [below](#repair-days-mapping) for details) |
 
 \* See [Authentication](../apis/authentication) for more details.
 
@@ -223,9 +223,9 @@ The following is a JSON schema for the allowed appointment slots data structure:
 ```
 
 ### Repair days Mapping
-This configuration is for the mapping between a repair's priority and the number of days in which it is expected to be completed. This mapping is used when reporting back to the user how long a repair is expected to take.
+This configuration is for the mapping between a repair's priority and the number of days in which it is expected to be scheduled and completed. This mapping is used when reporting back to the user how long a repair is expected to take.
 
-The values of `REPAIR_DAYS_MAPPING_PRODUCTION` and `REPAIR_DAYS_MAPPING_PRODUCTION`should be in JSON format and be an array of objects with `Priority` and `NumberOfDays` defined, i.e.
+The values of `REPAIR_PRIORITY_TO_DAYS_PRODUCTION` and `REPAIR_PRIORITY_TO_DAYS_STAGING` should be in JSON format and be an array of objects with `Priority` and `NumberOfDays` defined, i.e.
 
 ```
 [
