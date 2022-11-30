@@ -147,10 +147,10 @@ Email notification template ID is configured via [environment variables](#i-emai
 | AUTHENTICATION_IDENTIFIER_STAGING               | A unique identifier used to validate access for _Staging_                                                     |
 | JWT_SECRET_PRODUCTION                           | JWT secret generated for for _Production_                                                                     |
 | JWT_SECRET_STAGING                              | JWT secret generated for for _Staging_                                                                        |
-| ADDRESSES_API_URL_PRODUCTION                    | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
-| ADDRESSES_API_URL_STAGING                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
-| SCHEDULING_API_URL_PRODUCTION                   | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
-| SCHEDULING_API_URL_STAGING                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
+| [ADDRESSES_API_URL_PRODUCTION](../housing-management-system-api/intro)                    | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
+| [ADDRESSES_API_URL_STAGING](../housing-management-system-api/intro)                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
+| [SCHEDULING_API_URL_PRODUCTION](../scheduling-api/intro)                | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
+| [SCHEDULING_API_URL_STAGING](../scheduling-api/intro)                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
 | <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                 |
 | COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                            |
 | COSMOS_DATABASE_ID                                                        | Cosmos database name, e.g.: `housing-repairs-online`                                |
