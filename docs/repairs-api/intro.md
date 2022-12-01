@@ -147,10 +147,10 @@ Email notification template ID is configured via [environment variables](#i-emai
 | AUTHENTICATION_IDENTIFIER_STAGING               | A unique identifier used to validate access for _Staging_                                                     |
 | JWT_SECRET_PRODUCTION                           | JWT secret generated for for _Production_                                                                     |
 | JWT_SECRET_STAGING                              | JWT secret generated for for _Staging_                                                                        |
-| [ADDRESSES_API_URL_PRODUCTION](../housing-management-system-api/intro)                    | Retrieve from App Service once HousingManagementSystemApi is deployed                                         |
-| [ADDRESSES_API_URL_STAGING](../housing-management-system-api/intro)                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed                          |
-| [SCHEDULING_API_URL_PRODUCTION](../scheduling-api/intro)                | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                        |
-| [SCHEDULING_API_URL_STAGING](../scheduling-api/intro)                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                         |
+| [ADDRESSES_API_URL_PRODUCTION](../housing-management-system-api/intro)                    | Retrieve from App Service once HousingManagementSystemApi is deployed                     |
+| [ADDRESSES_API_URL_STAGING](../housing-management-system-api/intro)                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed      |
+| [SCHEDULING_API_URL_PRODUCTION](../scheduling-api/intro)                | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                      |
+| [SCHEDULING_API_URL_STAGING](../scheduling-api/intro)                      | Retrieve from App Service _Staging_ slot once HousingRepairsSchedulingApi is deployed                    |
 | <span id="cosmos-env">COSMOS_ENDPOINT_URL</span>                          | Cosmos endpoint URL                                                                 |
 | COSMOS_AUTHORIZATION_KEY                                                  | Cosmos authorization key                                                            |
 | COSMOS_DATABASE_ID                                                        | Cosmos database name, e.g.: `housing-repairs-online`                                |
@@ -171,11 +171,13 @@ Email notification template ID is configured via [environment variables](#i-emai
 | <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                |
 | DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
 | DAYS_UNTIL_IMAGE_EXPIRY_STAGING                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
-| [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup) | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)|
-| SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code    |
+| [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup)      | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                                      | 
+| SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code      |
 | SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
-| SOR_CONFIGURATION_LEASEHOLD                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code    |
-| ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
+| SOR_CONFIGURATION_LEASEHOLD                                               | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code   |
+| ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details)                         |
+| REPAIR_PRIORITY_TO_DAYS_PRODUCTION                                        | Specifies the priority to repair days mapping for production (see [below](#repair-days-mapping) for details)                |
+| REPAIR_PRIORITY_TO_DAYS_STAGING                                           | Specifies the priority to repair days mapping for staging (see [below](#repair-days-mapping) for details)                   |
 
 \* See [Authentication](../apis/authentication) for more details.
 
@@ -230,6 +232,24 @@ The following is a JSON schema for the allowed appointment slots data structure:
     "$ref": "#/definitions/appointmentSlotTimeSpan"
   }
 }
+```
+
+### Repair days Mapping
+This configuration is for the mapping between a repair's priority and the number of days in which it is expected to be scheduled and completed. This mapping is used when reporting back to the user how long a repair is expected to take.
+
+The values of `REPAIR_PRIORITY_TO_DAYS_PRODUCTION` and `REPAIR_PRIORITY_TO_DAYS_STAGING` should be in JSON format and be an array of objects with `Priority` and `NumberOfDays` defined, i.e.
+
+```
+[
+   {
+      "Priority":"2",
+      "NumberOfDays":"30"
+   },
+   {
+      "Priority":"3",
+      "NumberOfDays":"130"
+   }
+]
 ```
 
 ## Health Checks
