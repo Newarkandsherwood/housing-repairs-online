@@ -259,6 +259,10 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `STATE_KEY_NAME`                                  | The file path and name of your Terraform state file                                                           |
 | `STORAGE_CONTAINER_NAME_PRODUCTION`               | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
 | `STORAGE_CONTAINER_NAME_STAGING`                  | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
+| `SOR_CONFIGURATION_TENANT`                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code    |
+| `SOR_CONFIGURATION_COMMUNAL`                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
+| `SOR_CONFIGURATION_LEASEHOLD`                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code    |
+| `ALLOWED_APPOINTMENT_SLOTS`                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details) |
 | `REPAIR_PRIORITY_TO_DAYS_PRODUCTION`              | Repair priority to days mapping for communal repairs for _Staging_.                                           |
 | `REPAIR_PRIORITY_TO_DAYS_STAGING`                 | Repair priority to days mapping for communal repairs for _Production_.                                        |
 
