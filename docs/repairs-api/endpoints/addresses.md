@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Address search
 
-## GET: `/Addresses`
+## GET: `/TenantAddresses` `/CommunalAddresses` `/LeaseholdAddresses` 
 
 ### Request:
 
