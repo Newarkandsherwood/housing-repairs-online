@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Save repair
 
-## POST: `/repair`
+## POST: `/TenantRepair`  `/LeaseholdRepair`  `/CommunalRepair`
 
 ### Request:
 
