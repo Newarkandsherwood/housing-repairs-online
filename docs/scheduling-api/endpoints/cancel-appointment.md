@@ -29,4 +29,4 @@ HTTP 200 - success
 
 HTTP 404 - not found
 
-HTTP 500 - Error
+HTTP 500 - error
