@@ -37,8 +37,8 @@ Bearer Token `<token>`
 
 ### Response:
 
-HTTP 200 - success OR The repair already has the same start and end times as those provided
+HTTP 200 - 'success' OR 'the repair already has the same start and end times as those provided'
 
 HTTP 404 - not found
 
-HTTP 500 - Error
+HTTP 500 - error
