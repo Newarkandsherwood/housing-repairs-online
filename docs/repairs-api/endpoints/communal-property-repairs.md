@@ -16,7 +16,7 @@ Bearer Token `<token>`
 
 | Key                     | Example value  | Required |
 |-------------------------|----------------| -------- |
-| propertyReference       | "24234234"     | ✅       |
+| propertyReference       | "1440546"      | ✅       |
 
 
 ### Response:
@@ -41,7 +41,7 @@ Bearer Token `<token>`
       "display": "Toilet not flushing"
     },
     "description": {
-      "text": "\r\ndescription"
+      "text": "description"
     }
   },
   {
@@ -62,7 +62,7 @@ Bearer Token `<token>`
       "display": "Internal door issue, including hinges, handles or sticking"
     },
     "description": {
-      "text": "\r\ntest description"
+      "text": "test description"
     }
   }
 ]

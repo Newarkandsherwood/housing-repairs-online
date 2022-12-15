@@ -23,6 +23,6 @@ Bearer Token `<token>`
 
 HTTP 200 - success
 
-HTTP 404 - not found
+HTTP 404 - not Found
 
-HTTP 500 - Error
+HTTP 500 - error
