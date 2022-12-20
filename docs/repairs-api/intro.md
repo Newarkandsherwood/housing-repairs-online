@@ -172,9 +172,12 @@ Email notification template ID is configured via [environment variables](#i-emai
 | DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
 | DAYS_UNTIL_IMAGE_EXPIRY_STAGING                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup)      | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                                      | 
-| SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code      |
-| SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
-| SOR_CONFIGURATION_LEASEHOLD                                               | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code   |
+| SOR_CONFIGURATION_TENANT_PRODUCTION                                       | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code for production     |
+| SOR_CONFIGURATION_COMMUNAL_PRODUCTION                                     | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code for production     |
+| SOR_CONFIGURATION_LEASEHOLD_PRODUCTION                                       | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code for production |
+| SOR_CONFIGURATION_TENANT_STAGING                                          | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code for staging        |
+| SOR_CONFIGURATION_COMMUNAL_STAGING                                        | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code for staging        |
+| SOR_CONFIGURATION_LEASEHOLD_STAGING                                       | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code for staging    |
 | ALLOWED_APPOINTMENT_SLOTS                                                 | Specifies which appointment slots are allowed (see [below](#allowed-appointment-slots) for details)                         |
 | REPAIR_PRIORITY_TO_DAYS_PRODUCTION                                        | Specifies the priority to repair days mapping for production (see [below](#repair-days-mapping) for details)                |
 | REPAIR_PRIORITY_TO_DAYS_STAGING                                           | Specifies the priority to repair days mapping for staging (see [below](#repair-days-mapping) for details)                   |
