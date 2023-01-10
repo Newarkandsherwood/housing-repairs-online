@@ -175,6 +175,7 @@ To deploy the Scheduling API, you must populate the GitHub repository the follow
 | `APP_SERVICE_NAME`                     | Service name (must be unqiue across whole of Azure) e.g. `housing-repairs-scheduling-api-{LOCAL_AUTHORITY_NAME}`     |
 | `AUTHENTICATION_IDENTIFIER_PRODUCTION` | A unique identifier used to validate access used to validate access in production                                    |
 | `AUTHENTICATION_IDENTIFIER_STAGING`    | A unique identifier used to validate access used to validate access in staging                                       |
+| `AZURE_AD_TENANT_ID`                   | This is the Directory (tenant) ID                                                                                    |
 | `DRS_API_ADDRESS_PRODUCTION`           | Live/production DRS API address, e.g. `https://yourserver/OTWebServiceGateway_INSTANCENAME/ws/soap?wsdl`             |
 | `DRS_API_ADDRESS_STAGING`              | Test/staging DRS API address, e.g. `https://yourserver/OTWebServiceGateway_INSTANCENAME/ws/soap?wsdl`                |
 | `DRS_CONTRACT_PRODUCTION`              | Contract value to use when making requests to DRS in production                                                      |
