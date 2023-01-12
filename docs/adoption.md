@@ -145,6 +145,8 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `AZURE_AD_CLIENT_ID`                   | This is the Application (client) ID                                                                               |
 | `AZURE_AD_TENANT_ID`                   | This is the Directory (tenant) ID                                                                                 |
 | `AZURE_SUBSCRIPTION_ID`                | Navigate to subscriptions and select the Subscription ID for your subscription                                    |
+| `ANCM_ADDITIONAL_ERROR_PAGE_LINK_PRODUCTION`  | Link to an optional error page for production ASP.NET Core Module                                          |
+| `ANCM_ADDITIONAL_ERROR_PAGE_LINK_STAGING`  | Link to an optional error page for staging ASP.NET Core Module                                                |
 | `JWT_SECRET_PRODUCTION`                | JWT secret generated for for production                                                                           |
 | `JWT_SECRET_STAGING`                   | JWT secret generated for for staging                                                                              |
 | `NUGET_AUTH_GITHUB_TOKEN`              | Authentication token for authenticating with GitHub NuGet feed                                                    |
@@ -157,6 +159,10 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `STATE_KEY_NAME`                       | The file path and name of your Terraform state file
 | `COSMOS_DATABASE_ID`                   | DocumentDB (e.g. CosmosDB) database name |
 | `COSMOS_TENANT_CONTAINER_ID`           | DocumentDB (e.g. CosmosDB) container name for tenant addresses, e.g. `addresses` |
+| `COSMOS_COMMUNAL_STAGING_CONTAINER_ID`    | DocumentDB (e.g. CosmosDB) container name for staging communal addresses, e.g. `addresses`                     |
+| `COSMOS_COMMUNAL_PRODUCTION_CONTAINER_ID` | DocumentDB (e.g. CosmosDB) container name for production communal addresses, e.g. `addresses`                  |
+| `COSMOS_LEASEHOLD_STAGING_CONTAINER_ID`   | DocumentDB (e.g. CosmosDB) container name for staging leasehold addresses, e.g. `addresses`                    |
+| `COSMOS_LEASEHOLD_PRODUCTION_CONTAINER_ID`| DocumentDB (e.g. CosmosDB) container name for production leasehold addresses, e.g `addresses`                  |
 | `COSMOS_ENDPOINT_URL`                  | DocumentDB (e.g. CosmosDB) account endpoint URL |
 | `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key |
 
