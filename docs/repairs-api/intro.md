@@ -147,6 +147,8 @@ Email notification template ID is configured via [environment variables](#i-emai
 | AUTHENTICATION_IDENTIFIER_STAGING               | A unique identifier used to validate access for _Staging_                                                     |
 | JWT_SECRET_PRODUCTION                           | JWT secret generated for for _Production_                                                                     |
 | JWT_SECRET_STAGING                              | JWT secret generated for for _Staging_                                                                        |
+| NUGET_AUTH_GITHUB_TOKEN                         | Authentication token for authenticating with GitHub NuGet feed                                                |
+| NUGET_AUTH_GITHUB_USERNAME                      | Username for authenticating with GitHub NuGet feed                                                            |
 | [ADDRESSES_API_URL_PRODUCTION](../housing-management-system-api/intro)                    | Retrieve from App Service once HousingManagementSystemApi is deployed                     |
 | [ADDRESSES_API_URL_STAGING](../housing-management-system-api/intro)                       | Retrieve from App Service _Staging_ slot once HousingManagementSystemApi is deployed      |
 | [SCHEDULING_API_URL_PRODUCTION](../scheduling-api/intro)                | Retrieve from App Service once HousingRepairsSchedulingApi is deployed                                      |
@@ -158,7 +160,8 @@ Email notification template ID is configured via [environment variables](#i-emai
 | <span id="blob-env">AZURE_STORAGE_CONNECTION_STRING</span>                | Blob storage connection string                                                      |
 | STORAGE_CONTAINER_NAME_PRODUCTION               | Storage container name for _Production_, e.g. `housing-repairs-online`                                        |
 | STORAGE_CONTAINER_NAME_STAGING                  | Storage container name for _Staging_, e.g. `housing-repairs-online-staging`                                   |
-| GOV_NOTIFY_KEY                                                            | Gov notification key                                                                |
+| GOV_NOTIFY_KEY_PRODUCTION                                                            | Gov notification key                                                                |
+| GOV_NOTIFY_KEY_STAGING                                                            | Gov notification key                                                                |
 | TENANT_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID    | Gov notify email template ID for tenant repairs, this is available once the template is created               |
 | TENANT_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID      | Gov notify sms template ID for tenant repairs, this is available once the template is created                 |
 | TENANT_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID        | Gov notify internal email template ID for tenant repairs, this is available once the template is created      |
@@ -168,10 +171,12 @@ Email notification template ID is configured via [environment variables](#i-emai
 | LEASEHOLD_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID | Gov notify email template ID for leasehold repairs, this is available once the template is created            |
 | LEASEHOLD_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID   | Gov notify sms template ID for leasehold repairs, this is available once the template is created              |
 | LEASEHOLD_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID     | Gov notify internal email template ID for leasehold repairs, this is available once the template is created   |
-| <span id="email-env">INTERNAL_EMAIL</span>                                | Email to which internal staff emails will be sent to                                |
+| INTERNAL_EMAIL_PRODUCTION                       | Internal email address for receiving repair request details, for any manual follow-on process in _Production_ |
+| INTERNAL_EMAIL_STAGING                          | Internal email address for receiving repair request details, for any manual follow-on process in _Staging_    |
 | DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
 | DAYS_UNTIL_IMAGE_EXPIRY_STAGING                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup)      | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                                      | 
+| SERVICE_NAME                                    | Service name (must be unique across whole of Azure) e.g. `housing-repairs-online-api-{LOCAL_AUTHORITY_NAME}`  |
 | SOR_CONFIGURATION_TENANT                                                  | [Schedule of Rates configuration](sor-engine/#configuration) that specifies tenant options to offer and their SoR code      |
 | SOR_CONFIGURATION_COMMUNAL                                                | [Schedule of Rates configuration](sor-engine/#configuration) that specifies communal options to offer and their SoR code    |
 | SOR_CONFIGURATION_LEASEHOLD                                               | [Schedule of Rates configuration](sor-engine/#configuration) that specifies leasehold options to offer and their SoR code   |
