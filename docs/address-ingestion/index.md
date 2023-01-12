@@ -21,3 +21,22 @@ Three CSV files would be generated. One each for tenant addresses, communal area
 The C# code is deployed as an Azure function that would integrate with the storage container and CosmosDB.
 
 ![Address Ingestion diagram](../../static/img/address_ingestion.png)
+
+## Environment variables
+| Name                                            |  Description                                                                                                    |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| AUTHENTICATION_IDENTIFIER_PRODUCTION            | A unique identifier used to validate access for _Production_                                                    |
+| AUTHENTICATION_IDENTIFIER_STAGING               | A unique identifier used to validate access for _Staging_                                                       |
+| LOCATION                                        | The location of the Azure Function Resource group                                                               |
+| RESOURCE_GROUP_NAME                             | The name of the Azure Function Resource group                                                                   |
+| STORAGE_ACCOUNT_NAME                            | The name of the Azure storage account                                                                           |
+| STORAGE_ACCOUNT_PRIMARY_ACCESS_KEY              | The storage account primary access key                                                                          |
+| TENANT_CSV_BLOB_PATH_PRODUCTION                 | The BLOB path of the tenant address type's **production** data CSV                                              |
+| TENANT_CSV_BLOB_PATH_STAGING                    | The BLOB path of the tenant address type's **staging** data CSV                                                 |
+| COMMUNAL_CSV_BLOB_PATH_PRODUCTION               | The BLOB path of the communal address type's **production** data CSV                                            |
+| COMMUNAL_CSV_BLOB_PATH_STAGING                  | The BLOB path of the communal address type's **staging** data CSV                                               |
+| LEASEHOLD_CSV_BLOB_PATH_PRODUCTION              | The BLOB path of the leasehold address type's **production** data CSV                                           |
+| LEASEHOLD_CSV_BLOB_PATH_STAGING                 | The BLOB path of the leasehold address type's **staging** data CSV                                              |
+| PARTITION_KEY                                   | COSMOS container Partition Key path. e.g. '/PlaceReference'                                                     |
+| HOUSING_PROVIDER                                | The Housing Provider configuration of the Azure Function. e.g. 'capita'                                         |
+| COSMOS_ACCOUNT_NAME                             | Account Name of the COSMOS account                                                                              |

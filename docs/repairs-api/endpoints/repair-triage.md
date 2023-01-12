@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Repair Triage
 
-## GET: `/repairTriage`
+## GET: `/TenantRepairTriageOptions`, `/CommunalRepairTriageOptions`, `/LeaseholdRepairTriageOptions`
 
 ### Request:
 
