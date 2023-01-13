@@ -39,10 +39,10 @@ Written in .Net
 | `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key                                                                    |
 | `CAPITAOPTIONS__APIADDRESS`            | Capita Service URL                                                                                                |
 | `CAPITAOPTIONS__USERNAME`              | Capita Service username                                                                                           |
-| `CAPITAOPTIONS__PASSWORD`              | Capita Service password for staging                                                                               |
-| `CAPITAOPTIONS__STANDARDJOBCODE`       | Capita Service stdjobcode for staging                                                                             |
-| `CAPITAOPTIONS__SOURCE`                | Capita Service source for staging                                                                                 |
-| `CAPITAOPTIONS__SUBLOCATION`           | Capita Service sublocation for staging                                                                            |
+| `CAPITAOPTIONS__PASSWORD`              | Capita Service password                                                                                           |
+| `CAPITAOPTIONS__STANDARDJOBCODE`       | Capita Service stdjobcode                                                                                         |
+| `CAPITAOPTIONS__SOURCE`                | Capita Service source                                                                                             |
+| `CAPITAOPTIONS__SUBLOCATION`           | Capita Service sublocation                                                                                        |
 
 \* See [Authentication](../apis/authentication) for more details.
 
