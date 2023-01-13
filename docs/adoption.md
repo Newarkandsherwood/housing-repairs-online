@@ -165,6 +165,19 @@ To deploy the Housing Management System API, you must populate github actions wi
 | `COSMOS_LEASEHOLD_PRODUCTION_CONTAINER_ID`| DocumentDB (e.g. CosmosDB) container name for production leasehold addresses, e.g `addresses`                  |
 | `COSMOS_ENDPOINT_URL`                  | DocumentDB (e.g. CosmosDB) account endpoint URL |
 | `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key |
+| `CAPITA_URL_STAGING`                   | Capita Service URL for staging                                                                                    |
+| `CAPITA_URL_PRODUCTION`                | Capita Service URL for Production                                                                                 |
+| `CAPITA_USERNAME_STAGING`              | Capita Service username for staging                                                                               |
+| `CAPITA_USERNAME_PRODUCTION`           | Capita Service username for production                                                                            |
+| `CAPITA_PASSWORD_STAGING`              | Capita Service password for staging                                                                               |
+| `CAPITA_PASSWORD_PRODUCTION`           | Capita Service password for production                                                                            |
+| `CAPITA_STDJOBCODE_STAGING`            | Capita Service stdjobcode for staging                                                                             |
+| `CAPITA_STDJOBCODE_PRODUCTION`         | Capita Service stdjobcode for production                                                                          |
+| `CAPITA_SOURCE_STAGING`                | Capita Service source for staging                                                                                 |
+| `CAPITA_SOURCE_PRODUCTION`             | Capita Service source for production                                                                              |
+| `CAPITA_SUBLOCATION_STAGING`           | Capita Service sublocation for staging                                                                            |
+| `CAPITA_SUBLOCATION_PRODUCTION`        | Capita Service sublocation for production                                                                         |
+
 
 Once you have entered all of the environment variables, you should rerun the workflow in the `main` branch. The first run will fail `Deploy Staging` and `Deploy Production` step (which is expected, following steps will resolve). However, the `Provision Infrastructure` step should pass and deploy all the infrastructure.
 

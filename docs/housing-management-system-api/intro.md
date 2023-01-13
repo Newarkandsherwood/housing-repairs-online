@@ -37,6 +37,13 @@ Written in .Net
 | `COSMOS_LEASEHOLD_PRODUCTION_CONTAINER_ID`| DocumentDB (e.g. CosmosDB) container name for production leasehold addresses, e.g `addresses`                  |
 | `COSMOS_ENDPOINT_URL`                  | DocumentDB (e.g. CosmosDB) account endpoint URL                                                                   |
 | `COSMOS_AUTHORIZATION_KEY`             | DocumentDB (e.g. CosmosDB) account primary key                                                                    |
+| `CAPITAOPTIONS__APIADDRESS`            | Capita Service URL                                                                                                |
+| `CAPITAOPTIONS__USERNAME`              | Capita Service username                                                                                           |
+| `CAPITAOPTIONS__PASSWORD`              | Capita Service password for staging                                                                               |
+| `CAPITAOPTIONS__STANDARDJOBCODE`       | Capita Service stdjobcode for staging                                                                             |
+| `CAPITAOPTIONS__SOURCE`                | Capita Service source for staging                                                                                 |
+| `CAPITAOPTIONS__SUBLOCATION`           | Capita Service sublocation for staging                                                                            |
+
 \* See [Authentication](../apis/authentication) for more details.
 
 ## Health Checks
