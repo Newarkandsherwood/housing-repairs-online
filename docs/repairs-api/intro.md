@@ -163,6 +163,9 @@ Email notification template ID is configured via [environment variables](#i-emai
 | LEASEHOLD_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID | Gov notify email template ID for leasehold repairs, this is available once the template is created            |
 | LEASEHOLD_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID   | Gov notify sms template ID for leasehold repairs, this is available once the template is created              |
 | LEASEHOLD_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID     | Gov notify internal email template ID for leasehold repairs, this is available once the template is created   |
+| CANCELLATION_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID     | Gov notify internal email template ID for cancellation of repairs, this is available once the template is created   |
+| APPOINTMENT_CHANGED_SMS_NOTIFY_TEMPLATE_ID     | Gov notify sms template ID for changed appointments, this is available once the template is created   |
+| APPOINTMENT_CHANGED_EMAIL_NOTIFY_TEMPLATE_ID     | Gov notify email template ID for changed appointments, this is available once the template is created   |
 | INTERNAL_EMAIL                       | Internal email address for receiving repair request details, for any manual follow-on process |
 | DAYS_UNTIL_IMAGE_EXPIRY              | Number in days before image uploaded by customer expires, e.g. `14` days                     |
 | [SENTRY_DSN](../alerting-and-monitoring/intro#azure-component-setup)      | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                                      | 
