@@ -262,6 +262,9 @@ To deploy the housing repairs api, you must first deploy `HousingRepairsScheduli
 | `LEASEHOLD_CONFIRMATION_EMAIL_NOTIFY_TEMPLATE_ID` | Gov notify email template ID for leasehold repairs, this is available once the template is created            |
 | `LEASEHOLD_CONFIRMATION_SMS_NOTIFY_TEMPLATE_ID`   | Gov notify sms template ID for leasehold repairs, this is available once the template is created              |
 | `LEASEHOLD_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`     | Gov notify internal email template ID for leasehold repairs, this is available once the template is created   |
+| `CANCELLATION_INTERNAL_EMAIL_NOTIFY_TEMPLATE_ID`  | Gov notify internal email template ID for cancellation of repairs, this is available once the template is created   |
+| `APPOINTMENT_CHANGED_SMS_NOTIFY_TEMPLATE_ID`      | Gov notify sms template ID for changed appointments, this is available once the template is created           |
+| `APPOINTMENT_CHANGED_EMAIL_NOTIFY_TEMPLATE_ID`    | Gov notify email template ID for changed appointments, this is available once the template is created         |
 | `DAYS_UNTIL_IMAGE_EXPIRY_PRODUCTION`              | Number in days before image uploaded by customer expires for _Production_, e.g. `14` days                     |
 | `DAYS_UNTIL_IMAGE_EXPIRY_STAGING`                 | Number in days before image uploaded by customer expires for _Staging_, e.g. `14` days                        |
 | `GOV_NOTIFY_KEY_PRODUCTION`                       | _Staging_ gov notify key                                                                                      |
