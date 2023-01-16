@@ -11,10 +11,10 @@ Written in .Net
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | `AUTHENTICATION_IDENTIFIER` | A unique identifier used to validate access used to validate access. *                                                          |
 | `JWT_SECRET`                | JWT secret. *                                                                                                                   |
-| `DRS_API_ADDRESS`           | Live/production DRS API address, e.g. `https://yourserver/OTWebServiceGateway_INSTANCENAME/ws/soap?wsdl`                        |
-| `DRS_CONTRACT`              | Contract value to use when making requests to DRS in production                                                                 |
-| `DRS_LOGIN`                 | DRS login/user name in production                                                                                               |
-| `DRS_PASSWORD`              | DRS password in production                                                                                                      |
+| `DrsOptions__ApiAddress`    | Live/production DRS API address, e.g. `https://yourserver/OTWebServiceGateway_INSTANCENAME/ws/soap?wsdl`                        |
+| `DrsOptions__Contract`      | Contract value to use when making requests to DRS in production                                                                 |
+| `DrsOptions__Login`         | DRS login/user name in production                                                                                               |
+| `DrsOptions__Password`      | DRS password in production                                                                                                      |
 | `SENTRY_DSN`                | [Sentry Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/)                                          |
 
 \* See [Authentication](../apis/authentication) for more details.
